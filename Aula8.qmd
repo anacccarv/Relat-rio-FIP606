@@ -1,0 +1,278 @@
+---
+title: "Aula 8"
+format: html
+editor: visual
+message: false
+warning: false
+---
+
+# Bibliotecas
+
+```{r}
+library(tidyverse)
+library(gsheet)
+library(patchwork)
+```
+
+# Importa dados
+
+```{r}
+soja <- gsheet2tbl("https://docs.google.com/spreadsheets/d/1bq2N19DcZdtax2fQW9OHSGMR0X2__Z9T/edit#gid=866852711")
+soja <- soja |> 
+  mutate(TRAT = as.factor(TRAT),
+         BLOCO = as.factor(BLOCO))
+```
+
+# Visualiza dados
+
+```{r}
+dfc <- soja |> 
+  ggplot(aes(TRAT, DFC))+
+  geom_jitter(width = 0.05, color = "gray70")+
+  stat_summary(fun.data = "mean_cl_boot", size = 0.5, color = "black",
+               alpha = 0.5)
+
+
+fer <- soja |> 
+  ggplot(aes(TRAT, FER))+
+  geom_jitter(width = 0.05, color = "gray70")+
+  stat_summary(fun.data = "mean_cl_boot", size = 0.5, color = "black",
+               alpha = 0.5)
+
+prod <- soja |> 
+  ggplot(aes(TRAT, PROD))+
+  geom_jitter(width = 0.05, color = "gray70")+
+  stat_summary(fun.data = "mean_cl_boot", size = 0.5, color = "black",
+               alpha = 0.5)
+
+# mean_cl_boot : intervalo de confiança
+# stat_summary: calcula o valor médio sem precisar usar o sumarize para calcular o valor médio
+
+(dfc + fer + prod)
+
+```
+
+## Anova DFC
+
+```{r}
+aov_dfc <- lm(DFC ~ TRAT + BLOCO,
+              data = soja)
+
+anova(aov_dfc)
+```
+
+Efeito de tratamento foi significativo, de blocos não foi. Vai comparar as médias entre os tratamentos. Mesmo assim, tem que deixar os blocos, porque o delineamento do experimento foi em blocos casualizados. Antes de partir para as comparações múltiplas, tem que verificar as variâncias e homogeneidade.
+
+Checar normalidade e variancias:
+
+```{r}
+library(performance)
+check_normality(aov_dfc)
+check_heteroscedasticity(aov_dfc)
+```
+
+Todos os pacotes a seguir permitem a comparar as médias dos tratamentos:
+
+```{r}
+library(performance)
+check_normality(aov_dfc)
+check_heteroscedasticity(aov_dfc)
+
+library(emmeans)
+medias_dfc <- emmeans(aov_dfc, ~ TRAT)
+medias_dfc
+pwpm(medias_dfc)
+
+library(multcomp)
+cld(medias_dfc, Letters = LETTERS)
+
+```
+
+## Anova FER
+
+```{r}
+aov_fer <- lm(FER ~ TRAT + BLOCO,
+              data = soja)
+
+anova(aov_fer)
+```
+
+Efeito de tratamento foi significativo, de blocos não foi. Vai comparar as médias entre os tratamentos. Mesmo assim, tem que deixar os blocos, porque o delineamento do experimento foi em blocos casualizados. Antes de partir para as comparações múltiplas, tem que verificar as variâncias e homogeneidade.
+
+Checar normalidade e variancias:
+
+```{r}
+check_normality(aov_fer)
+check_heteroscedasticity(aov_fer)
+
+library(DHARMa)
+plot(simulateResiduals(aov_fer)) #melhorou ainda mais a normmalidade e não atendeu a heterocedasticidade
+
+```
+
+Não foi verificado homogeneidade e foi verificado heterocedasticidade entre as variâncias, então não pode continuar com a ANOVA.
+
+```{r}
+#Transformação dos dados por log
+aov_fer2 <- lm(log(FER) ~ TRAT + BLOCO,
+              data = soja)
+
+anova(aov_fer2)
+
+check_normality(aov_fer2)
+check_heteroscedasticity(aov_fer2)
+```
+
+Como o heterocedasticidade de 0,035, vamos considerar que não foi uma violação tão grave (num alfa de 0,05) e vamos seguir com a transformação
+
+Todos os pacotes a seguir permitem a comparar as médias dos tratamentos:
+
+```{r}
+library(emmeans)
+medias_fer <- emmeans(aov_fer, ~ TRAT)
+medias_fer
+pwpm(medias_fer)
+
+library(multcomp)
+cld(medias_fer, Letters = LETTERS)
+```
+
+Utilizando o boxcox (variável transformada:
+
+```{r}
+library(MASS)
+b <- boxcox(lm(soja$FER+0.1 ~1))
+lambda <- b$x[which.max(b$y)]
+
+#Usando o lambda na fórmula: y(lambda) = (x^lambda -1)/lambda
+soja$FER3 <- (soja$FER ^ lambda - 1) / lambda
+
+aov_FER3 <- lm(FER3 ~ TRAT + BLOCO,
+         data = soja)
+
+anova(aov_FER3)
+
+check_normality(aov_FER3)
+check_heteroscedasticity(aov_FER3)
+
+medias_fer3 <- emmeans(aov_FER3, ~ TRAT)
+medias_fer3
+pwpm(medias_fer3)
+
+library(multcomp)
+cld(medias_fer3, Letters = LETTERS)
+
+
+```
+
+## Anova PROD
+
+```{r}
+aov_prod <- lm(PROD ~ TRAT + BLOCO,
+              data = soja)
+
+anova(aov_prod)
+```
+
+Efeito de tratamento foi significativo, de blocos não foi. Vai comparar as médias entre os tratamentos. Mesmo assim, tem que deixar os blocos, porque o delineamento do experimento foi em blocos casualizados. Antes de partir para as comparações múltiplas, tem que verificar as variâncias e homogeneidade.
+
+Checar normalidade e variancias:
+
+```{r}
+check_normality(aov_prod)
+check_heteroscedasticity(aov_prod)
+```
+
+Todos os pacotes a seguir permitem a comparar as médias dos tratamentos:
+
+```{r}
+medias_prod <- emmeans(aov_prod, ~ TRAT)
+medias_prod
+pwpm(medias_prod)
+
+library(multcomp)
+cld(medias_prod, Letters = LETTERS)
+
+```
+
+# Apresentação dos dados?
+
+Pode ser um gráfico para cada um das variáveis (prod, fer e dfc), ou fazer uma tabela, que apresenta essas informações (cada em uma coluna).
+
+PRODUTIVIDADE:
+
+```{r}
+df_prod <- data.frame(medias_prod)
+
+df_prod |> 
+  ggplot(aes(TRAT, emmean))+
+  geom_point()+
+  geom_errorbar(aes(min = lower.CL,
+                    max = upper.CL),
+                width = 0.1)+
+  annotate(geom = "text", x = 1.2, y = 4200, label = "A")+
+  annotate(geom = "text", x = 8.2, y = 5100, label = "B")
+
+```
+
+```{r}
+df_prod <- cld(medias_prod, Letters = LETTERS)
+df_prod <- as.data.frame(df_prod)
+
+
+knitr::kable(df_prod |> dplyr::select(TRAT, emmean, .group))
+
+
+library(writexl)
+write_xlsx(df_prod, "df.xlsx")
+```
+
+# Importação dos dados
+
+```{r}
+curve <- gsheet2tbl("https://docs.google.com/spreadsheets/d/1bq2N19DcZdtax2fQW9OHSGMR0X2__Z9T/edit#gid=1807247585")
+```
+
+# Visualiza dados
+
+```{r}
+curve |> 
+  ggplot(aes(day, severity))+
+  geom_jitter()+
+  facet_wrap(~~Irrigation)
+
+curve |> 
+  group_by(day, Irrigation) |> 
+  summarise(mean_sev = mean(severity)) |> 
+  ggplot(aes(day, mean_sev))+
+  geom_point()+
+  geom_line()+
+  facet_wrap(~~ Irrigation)
+
+curve |> 
+  group_by(day, Irrigation) |> 
+  summarise(mean_sev = mean(severity)) |> 
+  ggplot(aes(day, mean_sev, color = Irrigation))+
+  geom_point()+
+  geom_line()
+```
+
+```{r}
+library(epifitter)
+curve2 <- curve |> 
+  group_by(Irrigation, rep) |> 
+  summarise(aacpd = AUDPC(day, severity))
+```
+
+Pode fazer a anova para a AUCPD (integração das obsevações (severidade) ao longo do tempo)
+
+```{r}
+m_curve <- lm(aacpd ~ Irrigation + factor(rep), data = curve2)
+
+anova(m_curve)
+
+library(agricolae)
+cv.model(m_curve) #coeficiente de variação
+```
+
+Eficácia é uma razão entre dois valores, severidade ou AUCPD sobre a sev ou AUCPD máxima (do testemunha) - 1 (pq 1 = a doença total) \*100 (pra dar em porcentagem)

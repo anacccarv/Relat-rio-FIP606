@@ -1,0 +1,618 @@
+---
+title: "Aula 9"
+format: html
+editor: visual
+---
+
+# Aula 9
+
+# Análise de Modelo Misto
+
+Parcelas subdividas: dentro de cada bloco tem os hibridos aleatoriamente. Naquele bloco, subdivido, aleatorizou o método dentro dos blocos -- ou seja, o método foi aleatorizado entre os hibridos em cada bloco. "Hibrido dentro do bloco e método dentro do híbrido".
+
+Pode utilizar um modelo misto (mistura de um fator de efeito fixo e um fator de efeito aleatório).
+
+# Bibliotecas
+
+```{r}
+library(gsheet)
+library(tidyverse)
+library(lme4)
+library(car)
+library(performance)
+library(DHARMa)
+library(emmeans)
+library(multcomp)
+library(multcompView)
+library(ggthemes)
+library(patchwork)
+
+```
+
+# Importação dos dados
+
+```{r}
+milho <- gsheet2tbl("https://docs.google.com/spreadsheets/d/1bq2N19DcZdtax2fQW9OHSGMR0X2__Z9T/edit#gid=1345524759")
+```
+
+# Visualização dos dados
+
+```{r}
+
+
+milho |> 
+  ggplot(aes(method, index))+
+  geom_jitter(width = 0.05, color = "grey")+
+  stat_summary(fun.data = "mean_cl_boot", size = 0.5,
+               alpha = 0.5, color = "blue")+
+  facet_wrap(~ hybrid)+
+  theme_classic()
+
+milho |> 
+  ggplot(aes(method, yield))+
+  geom_jitter(width = 0.05, color = "grey")+
+  stat_summary(fun.data = "mean_cl_boot", size = 0.5,
+               alpha = 0.5, color = "red")+
+  facet_wrap(~ hybrid)+
+  theme_classic()
+```
+
+## INDEX: Modelo para subdividido:
+
+```{r}
+
+milho <- milho |> 
+  mutate(block = as.factor(block))
+
+mix2 <- lmer(sqrt(index) ~hybrid*method  + block + (1|block/hybrid),
+                                  data = milho)
+
+Anova(mix2)
+```
+
+(1\|block/hybrid) = é para indicar para a função que é o fator de efeito aleatório.
+
+Resultado: deu interação significativa entre o hibrido e o metodo.
+
+### Testar as premissas
+
+```{r}
+check_normality(mix2)
+check_heteroscedasticity(mix2)
+
+plot(simulateResiduals(mix2))
+qqnorm(residuals(mix2))
+qqline(residuals(mix2))
+hist(residuals(mix2))
+
+#mesmo o Dharma dando problema, com o qqlinde e qqnorm os pontos estão próximos da linha, indicando normalidade, por isso, vamos prosseguir assumindo que as premissas foram atendidas.
+
+```
+
+### Teste de comparação de médias
+
+```{r}
+medias_milho <- emmeans(mix2,
+                        ~ hybrid | method,
+                        type = "response")
+
+medias_milho2 <- emmeans(mix2,
+                         ~ method | hybrid,
+                         type = "response")
+
+cld(medias_milho, Letters = LETTERS)
+cld(medias_milho2, Letters = LETTERS)
+
+```
+
+## YIELD: Modelo para subdividido:
+
+```{r}
+
+milho <- milho |> 
+  mutate(block = as.factor(block))
+
+mix3 <- lmer(sqrt(yield) ~hybrid*method  + block + (1|block/hybrid),
+                                  data = milho)
+
+Anova(mix3)
+```
+
+(1\|block/hybrid) = é para indicar para a função que é o fator de efeito aleatório.
+
+Resultado: deu interação significativa entre o hibrido e o metodo.
+
+### Testar as premissas
+
+```{r}
+check_normality(mix3)
+check_heteroscedasticity(mix3)
+
+plot(simulateResiduals(mix3))
+qqnorm(residuals(mix3))
+qqline(residuals(mix3))
+hist(residuals(mix3))
+
+#mesmo o Dharma dando problema, com o qqlinde e qqnorm os pontos estão próximos da linha, indicando normalidade, por isso, vamos prosseguir assumindo que as premissas foram atendidas.
+
+```
+
+### Teste de comparação de médias
+
+```{r}
+medias_milho3 <- emmeans(mix3,
+                        ~ hybrid | method,
+                        type = "response")
+
+medias_milho4 <- emmeans(mix3,
+                         ~ method | hybrid,
+                         type = "response")
+
+cld(medias_milho3, Letters = LETTERS)
+cld(medias_milho4, Letters = LETTERS)
+
+```
+
+# Importação dos dados
+
+```{r}
+estande <- gsheet2tbl("https://docs.google.com/spreadsheets/d/1bq2N19DcZdtax2fQW9OHSGMR0X2__Z9T/edit#gid=401662555")
+```
+
+Quer saber qual a tendência da porcentagem de sementes infectadas no número de plantas, ou seja, se diminui o estande de plantas emergidas, conforme aumenta a infecção no lote de sementes. Apesar de os dados serem em pontos específicos (0%, 3%, 6%...), se quer estimar qual a relação, o efeito (de 0 a 100%).
+
+# Visualização de dados
+
+```{r}
+estande |> 
+  ggplot(aes(trat, nplants))+
+  geom_jitter(width = 0.05, color = "lightgrey")+
+  stat_summary(fun.data = "mean_cl_boot", size = 0.5, color = "black",
+               alpha = 0.5)+
+  geom_smooth(method = lm,
+              se = FALSE)+
+  facet_wrap(~exp)+
+  theme_clean()
+```
+
+geom_smooth(method = lm) = cria a linha de regressão linear
+
+Ta mostrando que há efeito do *Bipolaris oryzae* causando redução na emergência de plantas no estande de plantas de arroz.
+
+Colocando todos os experimentos como um todo:
+
+```{r}
+estande |> 
+  ggplot(aes(trat, nplants))+
+  geom_jitter(width = 0.05, color = "lightgrey")+
+  stat_summary(fun.data = "mean_cl_boot", size = 0.5, color = "blue",
+               alpha = 0.5)+
+  #geom_smooth(method = lm, se = FALSE)+
+  #facet_wrap(~exp)+
+  theme_clean()
+```
+
+## Regressão linear simples por experimento
+
+### Visualização para exp1
+
+```{r}
+exp1 <- estande |> 
+  filter(exp == 1)
+
+exp1 |> 
+ggplot(aes(trat, nplants))+
+  geom_point()+
+  ylim(0,100)+
+  geom_smooth(se = FALSE)
+```
+
+Se não colocar o method em geom_smooth ele dá a linha suavizada. O se é para tirar o fundo cinza de tras da linha (erro)
+
+### Modelo linear
+
+```{r}
+lm1 <- lm(nplants ~trat,
+          data = exp1)
+summary(lm1)
+
+```
+
+QUal a hipótese nula: que o coeficiente de regressão é igual a 0. Ou seja, não tem efeito. Para cada percentual de inoculo (unidade de x) reduz 0,24 de y (precisa de 4% para reduzir uma planta) Dessa forma, como valor p foi maior que 0,05 (0,207), não rejeita H0, então não tem efeito.
+
+### Visualização para exp2
+
+```{r}
+exp2 <- estande |> 
+  filter(exp == 2)
+
+exp2 |> 
+ggplot(aes(trat, nplants))+
+  geom_point()+
+  ylim(0,100)+
+  geom_smooth(method = lm,
+    se = FALSE)
+```
+
+Se não colocar o method em geom_smooth ele dá a linha suavizada. O se é para tirar o fundo cinza de tras da linha (erro)
+
+### Modelo linear
+
+```{r}
+lm2 <- lm(nplants ~trat,
+          data = exp2)
+summary(lm2)
+
+```
+
+Para cada percentual de inoculo (unidade de x) reduz 0,70 de y (quase uma planta)
+
+Tem efeito significativo: p-valor \< 0,05
+
+Adjusted R-squared: é uma medida estatística utilizada em regressão linear para avaliar o ajuste do modelo aos dados. Ou seja, quanto maior o R2, maior a relação de y ser em função do x. Quanto maior variabilidade nos pontos (dispersão), o R2 diminui e o p-valor aumenta. Vai explicar menos, quanto mais disperso são os dados.
+
+#### Fazendo transformação dos dados: fica mais linear a linha
+
+```{r}
+exp2 |> 
+ggplot(aes(log(trat), nplants))+
+  geom_point()+
+  ylim(0,100)+
+  geom_smooth(se = FALSE)
+```
+
+#### Fazendo GLM
+
+```{r}
+glm2 <- glm(nplants ~trat, family = "gaussian",
+            data = exp2)
+
+summary(glm2)
+AIC(glm2)
+
+glm2b <- glm(nplants ~trat, family = "poisson",
+             data = exp2)
+
+summary(glm2b)
+AIC(glm2b)
+```
+
+### Visualização para exp3
+
+```{r}
+exp3 <- estande |> 
+  filter(exp == 3)
+
+exp3 |> 
+ggplot(aes(trat, nplants))+
+  geom_point()+
+  ylim(0,100)+
+  geom_smooth(se = FALSE)
+
+glm3 <- glm(nplants ~trat, family = "poisson",
+             data = exp3)
+
+summary(glm3)
+AIC(glm3)
+```
+
+### Análise global (sem ser para cada experimentos = todos os experimentos juntos)
+
+```{r}
+glm3 <- glmer(nplants ~trat + (trat | exp), family = "gaussian",
+              data = estande)
+summary(glm3)
+AIC(glm3)
+
+glm3b <- glmer(nplants ~trat + (trat|exp), family = poisson(link = "log"),
+                                                            data = estande)
+summary(glm3b)
+AIC(glm3b)
+
+```
+
+AIC menor diz que o modelo está melhor ajustado.
+
+# IMPORTAÇÃO
+
+```{r}
+#remotes::install_github("emdelponte/r4pde")
+
+library(r4pde)
+
+wm <- WhiteMoldSoybean
+
+wm |> 
+  ggplot(aes(inc, yld, color = factor(study)))+
+  geom_point()+
+  #facet_wrap(~study)+
+  theme_minimal()+
+  geom_smooth(method = lm,
+              se = FALSE)
+
+```
+
+```{r}
+mofo1 <- lm(yld ~inc,
+            data = wm)
+summary(mofo1)
+```
+
+Intercepto: produtivididade quando a incidÊncia é 0. INC: para cada percentual vc pede 9 kg (-9,261)
+
+```{r}
+library(broom)
+fit_all <- wm |> 
+  group_by(study) |> 
+  do(tidy(lm(.$yld ~.$inc),conf.int=TRUE))
+fit_all
+
+mofo2 <- wm |> 
+    group_by(study) |> 
+      do(tidy(lm(.$yld ~.$inc),conf.int=TRUE))
+    mofo2
+    
+df<- mofo2 |>  filter(term == ".$inc")
+mean(df$estimate)
+    
+library(lme4)
+mofo3 <- lmer(yld ~inc + (inc | study), data = wm,
+              REML = FALSE)
+summary(mofo3)
+
+```
+
+# Aula 10
+
+# Correlação linear
+
+## Importação dos dados e visualização
+
+Que correlação tem entre a análise dos grupos (diferentes programas que fizeram a análise das imagens)? Definimos como padrão o Assess.
+
+Correlação: associação entre duas variáveis. A força da associação é em função da dispersão dos dados, quanto mais diperso, mais fraca é a associação. Quanto mais próximo, menos disperso, são os dados, a associação é mais forte.
+
+Obtém o r (COEFICIENTE DE CORRELAÇÃO) = força de associação entre x e y. Correlação: entre variáveis respostas diferentes.
+
+Coeficiente de Pearson: -1 \> 0 \> 1 (correlação negativa e positiva).
+
+Pode obter a significação da correlação através do p-valor.
+
+Correlação não quer dizer causalidade: não tem relação de causa e efeito. Exemplo: aumentou o consumo de sorvete e aumentou a temperatura do mar - uma coisa não tem causa e efeito com a outra.
+
+Regressão: R² (quanto da variação de y é explicado pelo x) = COEFICIENTE DE DETERMINAÇÃO. R² é sempre menor que o r. O R² é sempre menor que r.
+
+```{r}
+img <- gsheet2tbl("https://docs.google.com/spreadsheets/d/1bq2N19DcZdtax2fQW9OHSGMR0X2__Z9T/edit#gid=373270992")
+
+p1 <- img |> 
+  ggplot(aes(Assess, ImageJ))+
+  geom_point()+
+  geom_smooth(method = "lm")
+
+p2 <- img |> 
+  ggplot(aes(Assess, LeafDoctor))+
+  geom_point()+
+  geom_smooth(method = "lm")
+
+img |> 
+  pivot_longer(3:5, names_to = "method",
+               values_to = "value") |> 
+  ggplot(aes(method, value))+
+  geom_boxplot()
+
+p1 + p2
+```
+
+```{r}
+img2 <- img |> 
+  dplyr::select(Assess, LeafDoctor, ImageJ)
+
+library(AgroR)
+corgraph(img2)
+
+cor.test(img$Assess, img$LeafDoctor)
+cor(img$Assess, img$LeafDoctor)
+
+library(corrplot)
+cor_img2 <- cor(img2)
+corrplot(cor_img2, method = 'number', type = "lower")
+
+cor_img2 <- cor(img2)
+corrplot(cor_img2, method = 'number', type = "upper")
+
+
+```
+
+cor.test dá mais informações do que a função cor. Quanto maior o r, menor o p-valor. P-valor: hipótese alternativa é que a a ccorrelação é igual a 0 (não tem correlação significativa). p-value = \< 2.2e-16 indica que a correlação é muito forte (p-valor altamente significativo) o r = 0,98 indica eplevada correlação entre os resultados.
+
+```{r}
+campo <- gsheet2tbl("https://docs.google.com/spreadsheets/d/1bq2N19DcZdtax2fQW9OHSGMR0X2__Z9T/edit#gid=866852711")
+
+campo2 <- campo |> 
+  dplyr::select(DFC, FER, PROD)
+
+corgraph(campo2)
+
+cor.test(campo$PROD, campo$DFC)
+cor.test(campo$PROD, campo$FER)
+```
+
+```{r}
+campo |>
+  ggplot(aes(DFC, PROD))+
+  geom_point()
+```
+
+# Regressão linear modelo quadrático
+
+o modelo quadrático é um modelo linear de ordem 2! (= modelo curvi-linear)
+
+Função para o modelo quadrático: formula = y \~ poly(x,2) no ggplot
+
+```{r}
+exp2 <- estande |> 
+  dplyr::filter(exp == 2)
+
+exp2 |> 
+  ggplot(aes(trat, nplants))+
+  geom_point()+
+ # stat_summary(fun.data = "mean_cl_boot", size = 0.5, color = "black",
+ #              alpha = 0.5)+
+  ylim(0,100)+
+  geom_smooth(method = "lm",
+              se = FALSE,
+              formula = y ~poly(x,2),
+              color = "black")+
+  geom_smooth(method = "lm",
+              se = FALSE)
+ # facet_wrap(~exp)+
+  #theme_clean()
+  
+```
+
+Modelo linear:
+
+```{r}
+#primeira ordem
+lm2 <- lm(nplants ~trat,
+          data = exp2)
+summary(lm2)
+hist(residuals(lm2))
+AIC(lm2)
+```
+
+Multiple R-squared: 0.4641 (obtido do summary(lm2))
+
+```{r}
+# segunda ordem (ou quadrática)
+exp2$trat2 <- exp2$trat^2
+
+lm3 <- lm(nplants ~trat + trat2,
+          data = exp2)
+summary(lm3)
+hist(residuals(lm3))
+AIC(lm3)
+```
+
+Multiple R-squared: 0.5432 O modelo quadrático está explicando melhor que o modelo de primeira ordem.
+
+AIC(lm3) = 93.1284 AIC(lm2) = 194.9597
+
+Quanto menor o AIC, melhor está explicando, então a quadrática realmente é melhor.
+
+y = 66,3 - 1,77xTrat + 0,02xTrat² (essa é a equação da regressão)
+
+Usando o pacote AgroR:
+
+```{r}
+with(exp2, polynomial(trat, nplants, grau = 3))
+```
+
+grau = 2 é função quadrática (R² maior que o grau = 1 então é melhor), o grau = 1 é função linear. Grau 3 (cubica) fica melhor ainda, não tem uma explicação biológica para isso. para acubica o valor-p é 0,21.
+
+```{r}
+#library(agro3)
+#with(exp2, polynomial(trat,nplants, grau = 2))
+#data("phao")
+#with(phao, polynomial(dose,comp, grau = 2))
+```
+
+## Importação dos dados e visualização dos dados
+
+```{r}
+pyra <- gsheet2tbl("https://docs.google.com/spreadsheets/d/1bq2N19DcZdtax2fQW9OHSGMR0X2__Z9T/edit#gid=465348652")
+
+pyra2 <- pyra |>
+  group_by(code, state, dose) |> 
+  summarise(mean_germination = mean(germination))
+
+pyra2|> 
+  ggplot(aes(dose, mean_germination))+
+  geom_point()+
+  facet_wrap(~code)
+
+```
+
+### Isolado 186
+
+```{r}
+library(drc)
+
+isolado186 <- pyra2 |> 
+   filter(code == "186")
+
+drc1 <- drm(mean_germination ~ dose, data = isolado186,
+            fct = W1.3())
+
+AIC(drc1)
+plot(drc1) #para visualizar se o ajuste está bom
+
+ED(drc1, 50, interval = "delta")
+summary(drc1)
+```
+
+### Isolado 165:
+
+```{r}
+isolado165 <- pyra2 |> 
+  filter(code == "165")
+
+drc2 <- drm(mean_germination ~ dose, data = isolado165,
+            fct = LL.3())
+
+AIC(drc2)
+plot(drc2) #para visualizar se o ajuste está bom
+
+ED(drc1, 50, interval = "delta")
+```
+
+### Interpretação:
+
+***AIC***: O critério de informação de Akaike (AIC) ajuda a avaliar a qualidade do ajuste do modelo; valores menores indicam melhor ajuste.
+
+***plot(drc1)***: O gráfico permite visualizar o ajuste do modelo aos dados.
+
+***ED(drc1, 50, interval = "delta")***: Calcula a dose que causa 50% do efeito máximo esperado (ED50) com um intervalo de confiança delta.
+
+***summary(drc1)***: Fornece um resumo detalhado do modelo ajustado, incluindo estimativas dos parâmetros e suas significâncias.
+
+## EC50
+
+```{r}
+library(ec50estimator)
+df_ec50 <- estimate_EC50(mean_germination ~ dose,
+                         data = pyra2,
+                         isolate_col = "code",
+                         interval = "delta",
+                         fct = drc::LL.3())
+
+df_ec50 |> 
+  ggplot(aes(reorder(ID, Estimate), Estimate))+
+  geom_point()+
+  geom_errorbar(aes(ymin = Lower, ymax = Upper), width = 0.1)+
+  coord_flip()
+
+print(df_ec50)
+```
+
+### Explicação dos Parâmetros:
+
+***mean_germination \~ dose***: A fórmula que especifica a variável resposta (`mean_germination`) e a variável preditora (`dose`).
+
+***data = pyra2***: O data frame que contém os dados.
+
+***isolate_col = "code"***: A coluna que identifica os diferentes isolados.
+
+***interval = "delta"***: O método para calcular os intervalos de confiança.
+
+***fct = drc::LL.3()***: A função de ajuste logística de três parâmetros do pacote `drc`.
+
+### Atenção
+
+Quanto maior a EC50, menor a sensibilidade. Ou seja, requer uma quantidade maior de produto, para ter o efeito de redução de 50% A EC50 (concentração efetiva 50) é a concentração de um agente (exemplo, fungicida) que é necessária para obter 50% do efeito máximo desejado. Portanto, a interpretação da EC50 é:
+
+-   Maior EC50: Indica menor sensibilidade do organismo ao agente. Isso significa que é necessária uma concentração maior do agente para alcançar o efeito desejado.
+-   Menor EC50: Indica maior sensibilidade do organismo ao agente. Isso significa que uma concentração menor do agente é suficiente para alcançar o efeito desejado
+
+Essa relação é crucial para entender a eficácia e a dosagem necessária de determinado produto.

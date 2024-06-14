@@ -1,0 +1,60 @@
+project:
+  type: website
+  output-dir: docs
+  
+execute: 
+  cache: true
+  freeze: auto
+  warning: false
+  
+website:
+  title: "FIP606"
+  favicon: icon.png
+  
+  navbar:
+    pinned: true
+    logo: icon.png
+    search: true
+    
+    left:
+
+      - href: Aula1.qmd
+        text: Fundamentos
+        
+      - text: Visualização dos dados
+        menu:
+          - href: Aula2.qmd
+            text: Introdução ao ggplot
+          - href: Aula3.qmd
+            text: Gráficos com ggplot - Parte 2
+          - href: Aula4.qmd
+            text: Gráficos com ggplot - Parte 3
+        
+      - href: Aula5.qmd
+        text: Análise Descritiva
+        
+      - text: Análise Inferencial
+        menu:
+          - href: Aula6.qmd
+            text: Teste T e ANOVA
+          - href: Aula8.qmd
+            text: ANOVA
+          - href: Aula9_10.qmd
+            text: Análise de Modelo Misto, Correlação Linear e Regressão Linear
+        
+    tools:
+      - icon: linkedin
+        href: https://www.linkedin.com/in/ana-carolyne-c-de-carvalho-b98b98256/
+      - icon: github
+        href:  https://github.com/anacccarv
+    
+format:
+  html:
+    theme: 
+      light: Minty
+      dark: superhero
+    css: styles.css
+    toc: true
+
+editor: visual
+

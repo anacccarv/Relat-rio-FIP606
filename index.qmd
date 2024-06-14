@@ -1,0 +1,21 @@
+---
+title: "FIP 606"
+---
+
+# **Bem vindo!**
+
+![](images/Design_sem_nome-removebg-preview.png){fig-align="center" width="272"}
+
+Sou Ana Carolyne, mestranda no Programa de Pós-Graduação em Fitopatologia da Universidade Federal de Viçosa, formada em Agronomia pela Universidade Federal Rural do Rio de Janeiro. Atualmente, atuo no Laboratório de Epidemiologia.
+
+Olá, seja bem vindo ao meu website!! Meu nome é Ana Carolyne, atualmente sou mestranda no Programa de Pós-Graduação em Fitopatologia na Universidade Federal de Viçosa e atuo no Laboratório de Epidemiologia. Concluí minha graduação em Agronomia na Universidade Federal Rural do Rio de Janeiro. Estou ansiosa para continuar explorando novas oportunidades de aprendizado e crescimento, enquanro trabalho para fazer uma diferença positiva no campo da Fitopatologia.
+
+## Sobre esse site
+
+Este website é dedicado à disciplina FIP 606 - Análise e Visualização de Dados em Fitopatologia, oferecida pela Universidade Federal de Viçosa e ministrada pelo professor Emerson Medeiros Del Ponte.
+
+Neste site, você encontrará todo o material das aulas, com códigos comentados e organizados nas aulas da disciplina. O objetivo é facilitar o acesso ao conhecimento e fomentar o interesse pela análise de dados fitopatológicos usando RStudio.
+
+Convido você a explorar os conteúdos disponíveis e a aproveitar ao máximo os recursos oferecidos. Se tiver qualquer dúvida ou sugestão, sinta-se à vontade para entrar em contato. Boa aprendizagem!
+
+![](images/icon.png){fig-align="center" width="94"}

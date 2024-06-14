@@ -1,0 +1,67 @@
+---
+title: "Aula1"
+author: "Ana Carolyne"
+format: "html"
+editor: visual
+editor_options: 
+  chunk_output_type: inline
+message: false
+warning: false
+---
+
+# Introdução: algumas funções básicas do R
+
+```{r}
+A <- c(1:10)
+B <- c(11:20)
+
+DF <- data.frame(A, B)
+
+is.data.frame(A) #resposta no console ([1] FALSE)
+
+is.data.frame(DF) #resposta no console ([1] TRUE)
+```
+
+## Pacote agricolae
+
+```{r}
+library(agricolae)
+
+dates <- c(14, 21, 28) #days
+
+# example a: evaluation - vector
+evaluation <- c(40, 80, 90)
+audpc(evaluation, dates)
+```
+
+```{r}
+library(epifitter)
+
+pressure
+summary(pressure)
+plot(pressure)
+str(pressure) #str : mostra a estrutura do df
+```
+
+# Para adicionar mais uma coluna no dataframe:
+
+```{r}
+df <- data.frame(cars)
+
+df$dist2 <- log(df$dist)
+df$dist2 <- c(1:50)
+
+# Usando o tidyverse:
+
+library(tidyverse)
+
+df|>
+  mutate(dist3 = dist2+1)
+```
+
+# Para selecionar colunas específicas do DF:
+
+```{r}
+df |> 
+  select(speed)
+```

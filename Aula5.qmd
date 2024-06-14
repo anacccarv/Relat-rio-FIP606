@@ -1,0 +1,176 @@
+---
+title: "Aula 5"
+format: html
+editor: visual
+message: false
+warning: false
+---
+
+Aluna: Ana Carolyne Costa de Carvalho (115522)
+
+# Bibliotecas
+
+Bibliotecas que foram utilizadas no relatório.
+
+```{r}
+library(tidyverse)
+library(gsheet)
+library(ggthemes)
+library(patchwork)
+```
+
+# Importação de dados
+
+Importação do conjunto de dados que contém os pontos e notas de cada aluno para as sabatinas da disciplina de Análise de Dados. Para isso, utilizamos a função *gsheet2tbl* do pacote **gsheet**.
+
+```{r}
+dados <- gsheet2tbl("https://docs.google.com/spreadsheets/d/1bq2N19DcZdtax2fQW9OHSGMR0X2__Z9T/edit#gid=1092065531")
+```
+
+# Análise Descritiva
+
+## Visualização dos dados
+
+### Sumarização dos dados
+
+Através da função *summary* do R base é possível obter uma sumarização geral dos dados, onde sabemos a média geral e outras informações das notas dos alunos para as duas provas realizadas.
+
+```{r}
+dados |> 
+  summary()
+```
+
+Utilizando o *group_by* e *summarise*, ambas funções do pacote **dplyr**, é possível calcular as informações de média, mediana e desvio padrão para cada prova, de forma que conseguimos visualizar em qual das avaliações obtivemos um melhor resultado.
+
+```{r}
+dados |> 
+  group_by(prova) |> 
+  summarise(mean_nota = mean(nota),
+            sd_nota = sd(nota),
+            median_nota = median(nota),
+            somatorio_nota = sum(nota))
+```
+
+Com isso, foi possível verificar que as duas avaliações apresentaram médias muito próximas, indicando uma constância no desempenho dos alunos.
+
+### Gráficos
+
+Para facilitar a visualização dos dados, foram elaborados alguns gráficos. Os gráficos foram confeccionados utilizando a função *ggplot* do pacote **ggplot2**.
+
+#### Histograma
+
+```{r}
+dados |> 
+  ggplot(aes(nota))+
+  geom_histogram(fill = "steelblue",
+                 color = "white",
+                 bins = 13)+
+    facet_wrap(~prova)+
+    geom_vline(xintercept = 70, linetype = "dashed", color = "black")+
+  xlim(0, 100)+
+  ylim(0,6)+
+labs(y = "Frequência",
+       x = "Notas")+
+  theme_bw()
+
+```
+
+Neste gráfico é possível visualizar a frequência de notas. Além disso, a linha chamuscada indica o local onde a nota é igual a 70.00, ou seja, após esta linha, estão as notas com valor maior ou igual à nota necessária para aprovação na disciplina.
+
+##### Quantos alunos possuem nota maior ou igual à 70.00?
+
+Para saber essa informação iremos utilizar a função *filter*, *group_by* e *count* do pacote **dplyr**.
+
+```{r}
+dados |> 
+  filter(nota > 70.00) |> 
+  group_by(prova) |> 
+  count()
+```
+
+Com esses dados, é possível ver que obtivemos 16 e 13 notas maiores que 70.00 na primeira e segunda prova, respectivamente. Em ambas as provas, mais da metade da turma (n = 22).
+
+#### Boxplot
+
+```{r}
+dados |> 
+  ggplot(aes(factor(prova), nota, color = prova))+
+  geom_boxplot()+
+  geom_jitter(width = 0.05, point_type = 2)+
+  labs(y = "Notas",
+       x = "Provas")+
+  theme_bw()+
+    theme(legend.position = "none")
+
+
+```
+
+Neste boxplot é possível visualizar que as duas provas se mantiveram com padrões similares quanto as notas. Em ambos os casos, é possível ver que a maior parte das notas foram maiores que 65, embora ainda seja possível ver uma dispersão dos dados.
+
+#### Histograma para cada prova
+
+```{r}
+p1 <- dados|> 
+    filter(prova == 1) |> 
+  ggplot(aes(nota))+
+  theme_bw()+
+  geom_histogram(bins = 5,
+                 fill = "darkred",
+               color = "white")+
+  labs(title = "Prova 1",
+    y = "Frequency",
+       x = "Notas")+
+  geom_vline(xintercept = 79.54545, linetype = "dashed")+
+      annotate(geom = "text", x = 73.5, y = 6.5, label = "Mean")+
+    theme(plot.title = element_text(hjust=0.5))+
+  ylim(0, 10)
+
+p1
+
+p2 <- dados |> 
+  filter(prova == 2) |> 
+  ggplot(aes(nota))+
+  theme_bw()+
+  geom_histogram(bins = 5,
+                 fill = "steelblue",
+               color = "white")+
+ labs( title = "Prova 2",
+       y = "Frequency",
+       x = "Notas")+
+  geom_vline(xintercept = 79.26136, linetype = "dashed")+
+    annotate(geom = "text", x = 73.5, y = 6.5, label = "Mean")+
+  theme(plot.title = element_text(hjust=0.5))+
+    ylim(0, 10)
+
+
+p2
+p1+p2
+```
+
+Neste gráfico é possível visualizar a frequência das notas para cada prova, separadamente. A linha tachada indica o valor médio.
+
+#### Gráfico de pontos
+
+```{r}
+dados |> 
+  group_by(prova) |>
+  summarise(mean_nota = mean(nota),
+            sd_nota = sd(nota)) |>  
+  ggplot(aes(factor(prova), mean_nota, color = prova))+
+  geom_point(size = 3)+
+  geom_errorbar(aes(ymin = mean_nota - sd_nota,
+                    ymax = mean_nota + sd_nota),
+                width = 0.05)+
+      theme_bw()+
+  theme(legend.position = "none")  +
+  ylim(0,100)+
+  labs(       y = "Nota média",
+       x = "Provas")
+
+```
+
+Neste gráfico, os pontos indicam o valor médio das notas para cada prova e as barras representam os intervalos de confianças.
+
+### Conclusão
+
+Com estes dados foi possível calcular e visualizar a frequência, a média, o desvio padrão, além de outros descritores, possibilitando fornecer insights sobre a dispersão dos dados em relação à média. Pode-se concluir que o desempenho dos alunos nas duas provas foi muito semelhante e que, apesar da variabilidade nas notas individuais, o desempenho médio dos alunos foi superior ao valor de corte estabelecido para a disciplina (70.00) Este resultado sugere uma performance satisfatória, indicando uma compreensão adequada do conteúdo da disciplina.
