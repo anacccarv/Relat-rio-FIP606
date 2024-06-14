@@ -50,7 +50,7 @@ O box indica normalidade, de acordo com a simetria e dá uma ideia de variancia,
 
 #### Teste T
 
-Função que roda o teste T: ***t.test***
+Função que roda o teste T: `t.test`
 
 Para o t.test precisa que os dados estejam no formato largo (a função pede os dados (tratamentos) em colunas separadas).
 
@@ -370,7 +370,7 @@ F é o que tem maior variância, o que tem menor é o C e D (tem outlier), parec
 
 1º Ajusta ANOVA 2º trabalha com resíduos da ANOVA (aplica os testes)
 
-**lm** = função que ajusta anova
+`lm` = função que ajusta anova
 
 ```{r}
 m1 <- lm(count ~ spray,
@@ -409,7 +409,7 @@ Tranformações mais comuns: log de x (quando tem 0, adiciona a constante + 0,5)
 
 Normalmente, quando tem contagem (numérica discreta), raiz quadrada resolve.
 
-Função **sqrt** faz a raiz quadrada.
+Função `sqrt` faz a raiz quadrada.
 
 ```{r}
 inseticida <- inseticida |> 

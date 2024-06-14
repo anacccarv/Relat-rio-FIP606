@@ -166,7 +166,7 @@ ggsave("plot2.png", bg = "white")
 
 # Criar subconjuntos
 
-Seleção de colunas = `select()` e Filtragem de linhas = `filter()` (ambas funções do pacote *dplyr*). Como o *tidyverse* contempla o dplyr e já foi carregado, não é necessário carregar o pacote dplyr.
+Seleção de colunas = `select()` e filtragem de linhas = `filter()` (ambas funções do pacote **dplyr**). Como o **tidyverse** contempla o **dplyr** e já foi carregado, não é necessário carregar o pacote **dplyr**.
 
 ```{r}
 # filtra Oromia
@@ -180,7 +180,7 @@ cr_pr <- cr |>
   filter(region == "SNNPR")
 ```
 
-Utiliza as funções `select()`e `filter()` do pacote **dplyr** para selecionar as colunas e linhas respectivamente.
+Utiliza as funções `select()`e `filter()` para selecionar as colunas e linhas respectivamente.
 
 ## Visualização dos subconjuntos
 
@@ -212,7 +212,7 @@ plot_layout(guides = 'collect')+ # para deixar apenas 1 legenda dos gráficos (j
 ggsave("patch1.png")
 ```
 
-Para fazer o mesmo gráfico, mas invertendo os eixos, de maneira mais rápida, sem precisar recriar todo o ggplot, utilizar a função **coord_flip()**
+Para fazer o mesmo gráfico, mas invertendo os eixos, de maneira mais rápida, sem precisar recriar todo o ggplot, utilizar a função `coord_flip()`.
 
 ```{r}
 p1 <- cr_oromia |> 

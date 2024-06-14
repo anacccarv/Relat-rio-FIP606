@@ -127,49 +127,63 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
-  <li class="nav-item">
-    <a class="nav-link" href="./index.html"> 
-<span class="menu-text">FIP 606</span></a>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-fundamentos" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Fundamentos</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-fundamentos">    
+        <li>
+    <a class="dropdown-item" href="./Introdução.html">
+ <span class="dropdown-text">Introdução</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./Aula1.html"> 
-<span class="menu-text">Fundamentos</span></a>
+        <li>
+    <a class="dropdown-item" href="./Aula1.html">
+ <span class="dropdown-text">Algumas funções do R</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="./Aula2.html">
+ <span class="dropdown-text">Importação e visualização dos dados</span></a>
+  </li>  
+    </ul>
+  </li>
   <li class="nav-item dropdown ">
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-visualização-dos-dados" role="button" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Visualização dos dados</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-visualização-dos-dados">    
         <li>
-    <a class="dropdown-item" href="./Aula2.html">
- <span class="dropdown-text">Introdução ao ggplot</span></a>
+    <a class="dropdown-item" href="./Aula3.html">
+ <span class="dropdown-text">Gráficos com ggplot</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./Aula3.html">
+    <a class="dropdown-item" href="./Aula4.html">
  <span class="dropdown-text">Gráficos com ggplot - Parte 2</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="./Aula4.html"> 
-<span class="menu-text">Aula 4</span></a>
-  </li>  
-  <li class="nav-item">
     <a class="nav-link" href="./Aula5.html"> 
-<span class="menu-text">Aula 5</span></a>
+<span class="menu-text">Análise Descritiva</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./Aula6.html"> 
-<span class="menu-text">Aulas 6 e 7</span></a>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-análise-inferencial" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Análise Inferencial</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-análise-inferencial">    
+        <li>
+    <a class="dropdown-item" href="./Aula6.html">
+ <span class="dropdown-text">Teste T e ANOVA</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./Aula8.html"> 
-<span class="menu-text">Aula 8</span></a>
+        <li>
+    <a class="dropdown-item" href="./Aula8.html">
+ <span class="dropdown-text">ANOVA</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./Aula9_10.html"> 
-<span class="menu-text">Aulas 9 e 10</span></a>
+        <li>
+    <a class="dropdown-item" href="./Aula9_10.html">
+ <span class="dropdown-text">Análise de Modelo Misto, Correlação Linear e Regressão Linear</span></a>
   </li>  
+    </ul>
+  </li>
 </ul>
           </div> <!-- /navcollapse -->
           <div class="quarto-navbar-tools tools-wide">
@@ -466,7 +480,7 @@ mediana estão mais próximas.</p>
 </section>
 <section id="criar-subconjuntos" class="level1">
 <h1>Criar subconjuntos</h1>
-<p>Seleção de colunas = <code>select()</code> e Filtragem de linhas = <code>filter()</code> (ambas funções do pacote <em>dplyr</em>). Como o <em>tidyverse</em> contempla o dplyr e já foi carregado, não é necessário carregar o pacote dplyr.</p>
+<p>Seleção de colunas = <code>select()</code> e filtragem de linhas = <code>filter()</code> (ambas funções do pacote <strong>dplyr</strong>). Como o <strong>tidyverse</strong> contempla o <strong>dplyr</strong> e já foi carregado, não é necessário carregar o pacote <strong>dplyr</strong>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># filtra Oromia</span></span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>cr_oromia <span class="ot">&lt;-</span> cr <span class="sc">|&gt;</span> </span>
@@ -478,7 +492,7 @@ mediana estão mais próximas.</p>
 <span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(farm, region, cultivar, sev2) <span class="sc">|&gt;</span> </span>
 <span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(region <span class="sc">==</span> <span class="st">"SNNPR"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Utiliza as funções <code>select()</code>e <code>filter()</code> do pacote <strong>dplyr</strong> para selecionar as colunas e linhas respectivamente.</p>
+<p>Utiliza as funções <code>select()</code>e <code>filter()</code> para selecionar as colunas e linhas respectivamente.</p>
 <section id="visualização-dos-subconjuntos" class="level2">
 <h2 class="anchored" data-anchor-id="visualização-dos-subconjuntos">Visualização dos subconjuntos</h2>
 <p>Gráficos <strong>ggplot</strong> para cada subconjunto</p>
@@ -513,7 +527,7 @@ mediana estão mais próximas.</p>
 </div>
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">"patch1.png"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Para fazer o mesmo gráfico, mas invertendo os eixos, de maneira mais rápida, sem precisar recriar todo o ggplot, utilizar a função <strong>coord_flip()</strong></p>
+<p>Para fazer o mesmo gráfico, mas invertendo os eixos, de maneira mais rápida, sem precisar recriar todo o ggplot, utilizar a função <code>coord_flip()</code>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> cr_oromia <span class="sc">|&gt;</span> </span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(cultivar, sev2, <span class="at">fill =</span> cultivar))<span class="sc">+</span></span>

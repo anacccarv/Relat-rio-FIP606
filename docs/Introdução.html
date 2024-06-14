@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>FIP606 - Aula 5</title>
+<title>FIP606 - introducao</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -138,11 +138,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>  
         <li>
     <a class="dropdown-item" href="./Aula1.html">
- <span class="dropdown-text">Algumas funções do R</span></a>
+ <span class="dropdown-text">Algumas funções básicas do R</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="./Aula2.html">
- <span class="dropdown-text">Importação e visualização dos dados</span></a>
+ <span class="dropdown-text">Importação dos dados</span></a>
   </li>  
     </ul>
   </li>
@@ -152,17 +152,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-visualização-dos-dados">    
         <li>
+    <a class="dropdown-item" href="./Aula2.html">
+ <span class="dropdown-text">Introdução ao ggplot</span></a>
+  </li>  
+        <li>
     <a class="dropdown-item" href="./Aula3.html">
- <span class="dropdown-text">Gráficos com ggplot</span></a>
+ <span class="dropdown-text">Gráficos com ggplot - Parte 2</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="./Aula4.html">
- <span class="dropdown-text">Gráficos com ggplot - Parte 2</span></a>
+ <span class="dropdown-text">Gráficos com ggplot - Parte 3</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item">
-    <a class="nav-link active" href="./Aula5.html" aria-current="page"> 
+    <a class="nav-link" href="./Aula5.html"> 
 <span class="menu-text">Análise Descritiva</span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -203,16 +207,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#bibliotecas" id="toc-bibliotecas" class="nav-link active" data-scroll-target="#bibliotecas">Bibliotecas</a></li>
-  <li><a href="#importação-de-dados" id="toc-importação-de-dados" class="nav-link" data-scroll-target="#importação-de-dados">Importação de dados</a></li>
-  <li><a href="#análise-descritiva" id="toc-análise-descritiva" class="nav-link" data-scroll-target="#análise-descritiva">Análise Descritiva</a>
+  <li><a href="#introdução" id="toc-introdução" class="nav-link active" data-scroll-target="#introdução">Introdução</a></li>
+  <li><a href="#começando-um-projeto-no-rstudio" id="toc-começando-um-projeto-no-rstudio" class="nav-link" data-scroll-target="#começando-um-projeto-no-rstudio">Começando um projeto no RStudio</a>
   <ul class="collapse">
-  <li><a href="#visualização-dos-dados" id="toc-visualização-dos-dados" class="nav-link" data-scroll-target="#visualização-dos-dados">Visualização dos dados</a>
-  <ul class="collapse">
-  <li><a href="#sumarização-dos-dados" id="toc-sumarização-dos-dados" class="nav-link" data-scroll-target="#sumarização-dos-dados">Sumarização dos dados</a></li>
-  <li><a href="#gráficos" id="toc-gráficos" class="nav-link" data-scroll-target="#gráficos">Gráficos</a></li>
-  <li><a href="#conclusão" id="toc-conclusão" class="nav-link" data-scroll-target="#conclusão">Conclusão</a></li>
+  <li><a href="#passos-para-começar-um-projeto-organizado" id="toc-passos-para-começar-um-projeto-organizado" class="nav-link" data-scroll-target="#passos-para-começar-um-projeto-organizado">Passos para Começar um Projeto Organizado</a></li>
   </ul></li>
+  <li><a href="#pacotes-r" id="toc-pacotes-r" class="nav-link" data-scroll-target="#pacotes-r">Pacotes R</a>
+  <ul class="collapse">
+  <li><a href="#para-instalar-pacotes-do-cran" id="toc-para-instalar-pacotes-do-cran" class="nav-link" data-scroll-target="#para-instalar-pacotes-do-cran">Para instalar pacotes do CRAN:</a></li>
+  <li><a href="#para-instalar-pacotes-do-github" id="toc-para-instalar-pacotes-do-github" class="nav-link" data-scroll-target="#para-instalar-pacotes-do-github">Para instalar pacotes do GitHub:</a></li>
+  <li><a href="#carregamento-de-pacotes" id="toc-carregamento-de-pacotes" class="nav-link" data-scroll-target="#carregamento-de-pacotes">Carregamento de pacotes:</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -222,7 +226,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Aula 5</h1>
+<h1 class="title">introducao</h1>
 </div>
 
 
@@ -239,225 +243,64 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>Aluna: Ana Carolyne Costa de Carvalho (115522)</p>
-<section id="bibliotecas" class="level1">
-<h1>Bibliotecas</h1>
-<p>Bibliotecas que foram utilizadas no relatório.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gsheet)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggthemes)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<section id="introdução" class="level1">
+<h1>Introdução</h1>
+<p>R é uma linguagem de programação e ambiente de software livre amplamente utilizado para análise estatística, visualização de dados e ciência de dados. Criado por Ross Ihaka e Robert Gentleman na década de 1990, R teve sua primeira versão estável lançada em 2000 e, desde então, tem crescido em popularidade devido a suas poderosas capacidades e à forte comunidade de usuários e desenvolvedores.</p>
+<p>Embora seja perfeitamente possível usar apenas a instalação básica do R, muitas pessoas preferem utilizar um ambiente de desenvolvimento integrado (IDE) para uma experiência mais eficiente e amigável. Um dos IDEs mais populares para R é o RStudio.</p>
+<p>RStudio é um complemento do R que oferece uma interface mais intuitiva e funcionalidades avançadas para facilitar seu trabalho com R.</p>
+<p>Para fazer o download dos programas <a href="https://posit.co/download/rstudio-desktop/#download">clique aqui</a>.</p>
 </section>
-<section id="importação-de-dados" class="level1">
-<h1>Importação de dados</h1>
-<p>Importação do conjunto de dados que contém os pontos e notas de cada aluno para as sabatinas da disciplina de Análise de Dados. Para isso, utilizamos a função <em>gsheet2tbl</em> do pacote <strong>gsheet</strong>.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>dados <span class="ot">&lt;-</span> <span class="fu">gsheet2tbl</span>(<span class="st">"https://docs.google.com/spreadsheets/d/1bq2N19DcZdtax2fQW9OHSGMR0X2__Z9T/edit#gid=1092065531"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="análise-descritiva" class="level1">
-<h1>Análise Descritiva</h1>
-<section id="visualização-dos-dados" class="level2">
-<h2 class="anchored" data-anchor-id="visualização-dos-dados">Visualização dos dados</h2>
-<section id="sumarização-dos-dados" class="level3">
-<h3 class="anchored" data-anchor-id="sumarização-dos-dados">Sumarização dos dados</h3>
-<p>Através da função <em>summary</em> do R base é possível obter uma sumarização geral dos dados, onde sabemos a média geral e outras informações das notas dos alunos para as duas provas realizadas.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>dados <span class="sc">|&gt;</span> </span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summary</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>     prova         pontos           nota       
- Min.   :1.0   Min.   : 6.00   Min.   : 42.90  
- 1st Qu.:1.0   1st Qu.:10.00   1st Qu.: 68.75  
- Median :1.5   Median :12.50   Median : 85.70  
- Mean   :1.5   Mean   :11.91   Mean   : 79.40  
- 3rd Qu.:2.0   3rd Qu.:14.00   3rd Qu.:100.00  
- Max.   :2.0   Max.   :16.00   Max.   :100.00  </code></pre>
-</div>
-</div>
-<p>Utilizando o <em>group_by</em> e <em>summarise</em>, ambas funções do pacote <strong>dplyr</strong>, é possível calcular as informações de média, mediana e desvio padrão para cada prova, de forma que conseguimos visualizar em qual das avaliações obtivemos um melhor resultado.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>dados <span class="sc">|&gt;</span> </span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(prova) <span class="sc">|&gt;</span> </span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_nota =</span> <span class="fu">mean</span>(nota),</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">sd_nota =</span> <span class="fu">sd</span>(nota),</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">median_nota =</span> <span class="fu">median</span>(nota),</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">somatorio_nota =</span> <span class="fu">sum</span>(nota))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 2 × 5
-  prova mean_nota sd_nota median_nota somatorio_nota
-  &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;       &lt;dbl&gt;          &lt;dbl&gt;
-1     1      79.5    19.0        85.7          1750 
-2     2      79.3    19.7        84.4          1744.</code></pre>
-</div>
-</div>
-<p>Com isso, foi possível verificar que as duas avaliações apresentaram médias muito próximas, indicando uma constância no desempenho dos alunos.</p>
-</section>
-<section id="gráficos" class="level3">
-<h3 class="anchored" data-anchor-id="gráficos">Gráficos</h3>
-<p>Para facilitar a visualização dos dados, foram elaborados alguns gráficos. Os gráficos foram confeccionados utilizando a função <em>ggplot</em> do pacote <strong>ggplot2</strong>.</p>
-<section id="histograma" class="level4">
-<h4 class="anchored" data-anchor-id="histograma">Histograma</h4>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>dados <span class="sc">|&gt;</span> </span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(nota))<span class="sc">+</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">fill =</span> <span class="st">"steelblue"</span>,</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">color =</span> <span class="st">"white"</span>,</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>                 <span class="at">bins =</span> <span class="dv">13</span>)<span class="sc">+</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_wrap</span>(<span class="sc">~</span>prova)<span class="sc">+</span></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">70</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">color =</span> <span class="st">"black"</span>)<span class="sc">+</span></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="dv">0</span>, <span class="dv">100</span>)<span class="sc">+</span></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>,<span class="dv">6</span>)<span class="sc">+</span></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"Frequência"</span>,</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Notas"</span>)<span class="sc">+</span></span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="Aula5_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>Neste gráfico é possível visualizar a frequência de notas. Além disso, a linha chamuscada indica o local onde a nota é igual a 70.00, ou seja, após esta linha, estão as notas com valor maior ou igual à nota necessária para aprovação na disciplina.</p>
-<section id="quantos-alunos-possuem-nota-maior-ou-igual-à-70.00" class="level5">
-<h5 class="anchored" data-anchor-id="quantos-alunos-possuem-nota-maior-ou-igual-à-70.00">Quantos alunos possuem nota maior ou igual à 70.00?</h5>
-<p>Para saber essa informação iremos utilizar a função <em>filter</em>, <em>group_by</em> e <em>count</em> do pacote <strong>dplyr</strong>.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>dados <span class="sc">|&gt;</span> </span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(nota <span class="sc">&gt;</span> <span class="fl">70.00</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(prova) <span class="sc">|&gt;</span> </span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 2 × 2
-# Groups:   prova [2]
-  prova     n
-  &lt;dbl&gt; &lt;int&gt;
-1     1    16
-2     2    13</code></pre>
-</div>
-</div>
-<p>Com esses dados, é possível ver que obtivemos 16 e 13 notas maiores que 70.00 na primeira e segunda prova, respectivamente. Em ambas as provas, mais da metade da turma (n = 22).</p>
+<section id="começando-um-projeto-no-rstudio" class="level1">
+<h1>Começando um projeto no RStudio</h1>
+<p>Manter seus projetos organizados é crucial para facilitar o entendimento dos códigos no momento das análises e principalmente no futuro.</p>
+<section id="passos-para-começar-um-projeto-organizado" class="level2">
+<h2 class="anchored" data-anchor-id="passos-para-começar-um-projeto-organizado">Passos para Começar um Projeto Organizado</h2>
+<ol type="1">
+<li><p><strong>Criar um Projeto no RStudio</strong></p>
+<ul>
+<li><p>Inicie o RStudio e vá para <code>File &gt; New Project</code>.</p></li>
+<li><p>Siga as instruções para criar um novo projeto. Isso ajudará a manter todos os arquivos relacionados ao seu projeto em um único diretório.</p></li>
+</ul></li>
+<li><p><strong>Criar Arquivos Quarto Markdown</strong></p>
+<ul>
+<li><p>Use Quarto Markdown para combinar conteúdo e código executável em um documento finalizado.</p></li>
+<li><p>No RStudio, vá para <code>File &gt; New File &gt; Quarto Document</code> para criar um novo arquivo .qmd.</p></li>
+</ul></li>
+</ol>
+<p>Utilizar o Quarto Markdown permite a criação de documentos dinâmicos que integram texto e código, facilitando a análise reprodutível e a comunicação dos resultados.</p>
 </section>
 </section>
-<section id="boxplot" class="level4">
-<h4 class="anchored" data-anchor-id="boxplot">Boxplot</h4>
+<section id="pacotes-r" class="level1">
+<h1>Pacotes R</h1>
+<p>“Você pode pensar em um pacote como uma coleção de funções, dados e arquivos de ajuda agrupados em uma estrutura padrão bem definida que você pode baixar e instalar em R” (Intro to R, n.d.).</p>
+<p>Referência: Intro to R. (n.d.). Packages. Retrieved from <a href="https://intro2r.com/packages.html" class="uri">https://intro2r.com/packages.html</a></p>
+<p>Esses pacotes podem ser obtidos de diversas fontes, sendo as mais populares o CRAN, o Bioconductor e o GitHub.</p>
+<section id="para-instalar-pacotes-do-cran" class="level2">
+<h2 class="anchored" data-anchor-id="para-instalar-pacotes-do-cran">Para instalar pacotes do CRAN:</h2>
+<p>Para instalar um pacote do CRAN você pode usar a função&nbsp;<code>install.packages()</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>dados <span class="sc">|&gt;</span> </span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="fu">factor</span>(prova), nota, <span class="at">color =</span> prova))<span class="sc">+</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()<span class="sc">+</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">width =</span> <span class="fl">0.05</span>, <span class="at">point_type =</span> <span class="dv">2</span>)<span class="sc">+</span></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"Notas"</span>,</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Provas"</span>)<span class="sc">+</span></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()<span class="sc">+</span></span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="Aula5_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Exemplo:</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages("nome do pacote de interesse")</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
-</div>
-<p>Neste boxplot é possível visualizar que as duas provas se mantiveram com padrões similares quanto as notas. Em ambos os casos, é possível ver que a maior parte das notas foram maiores que 65, embora ainda seja possível ver uma dispersão dos dados.</p>
+<p>É uma boa prática atualizar periodicamente os pacotes instalados para acessar novas funcionalidades e correções de bugs. Para atualizar pacotes do CRAN, você pode usar a função <code>update.packages()</code>.</p>
 </section>
-<section id="histograma-para-cada-prova" class="level4">
-<h4 class="anchored" data-anchor-id="histograma-para-cada-prova">Histograma para cada prova</h4>
+<section id="para-instalar-pacotes-do-github" class="level2">
+<h2 class="anchored" data-anchor-id="para-instalar-pacotes-do-github">Para instalar pacotes do GitHub:</h2>
+<p>Há várias maneiras de instalar pacotes hospedados no GitHub, mas uma das mais eficientes é utilizar a função <code>install_github()</code> do pacote remotes. Antes de usar esta função, é necessário saber o nome de usuário do GitHub do proprietário do repositório e o nome do próprio repositório.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> dados<span class="sc">|&gt;</span> </span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(prova <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(nota))<span class="sc">+</span></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()<span class="sc">+</span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">5</span>,</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>                 <span class="at">fill =</span> <span class="st">"darkred"</span>,</span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>               <span class="at">color =</span> <span class="st">"white"</span>)<span class="sc">+</span></span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Prova 1"</span>,</span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Frequency"</span>,</span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Notas"</span>)<span class="sc">+</span></span>
-<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fl">79.54545</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>)<span class="sc">+</span></span>
-<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>      <span class="fu">annotate</span>(<span class="at">geom =</span> <span class="st">"text"</span>, <span class="at">x =</span> <span class="fl">73.5</span>, <span class="at">y =</span> <span class="fl">6.5</span>, <span class="at">label =</span> <span class="st">"Mean"</span>)<span class="sc">+</span></span>
-<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust=</span><span class="fl">0.5</span>))<span class="sc">+</span></span>
-<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>, <span class="dv">10</span>)</span>
-<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>p1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="Aula5_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Exemplo:</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"emdelponte/r4pde"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> dados <span class="sc">|&gt;</span> </span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(prova <span class="sc">==</span> <span class="dv">2</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(nota))<span class="sc">+</span></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()<span class="sc">+</span></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">5</span>,</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>                 <span class="at">fill =</span> <span class="st">"steelblue"</span>,</span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>               <span class="at">color =</span> <span class="st">"white"</span>)<span class="sc">+</span></span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a> <span class="fu">labs</span>( <span class="at">title =</span> <span class="st">"Prova 2"</span>,</span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Frequency"</span>,</span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Notas"</span>)<span class="sc">+</span></span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fl">79.26136</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>)<span class="sc">+</span></span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">annotate</span>(<span class="at">geom =</span> <span class="st">"text"</span>, <span class="at">x =</span> <span class="fl">73.5</span>, <span class="at">y =</span> <span class="fl">6.5</span>, <span class="at">label =</span> <span class="st">"Mean"</span>)<span class="sc">+</span></span>
-<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust=</span><span class="fl">0.5</span>))<span class="sc">+</span></span>
-<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ylim</span>(<span class="dv">0</span>, <span class="dv">10</span>)</span>
-<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>p2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="Aula5_files/figure-html/unnamed-chunk-8-2.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>p1<span class="sc">+</span>p2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="Aula5_files/figure-html/unnamed-chunk-8-3.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>Neste gráfico é possível visualizar a frequência das notas para cada prova, separadamente. A linha tachada indica o valor médio.</p>
 </section>
-<section id="gráfico-de-pontos" class="level4">
-<h4 class="anchored" data-anchor-id="gráfico-de-pontos">Gráfico de pontos</h4>
+<section id="carregamento-de-pacotes" class="level2">
+<h2 class="anchored" data-anchor-id="carregamento-de-pacotes">Carregamento de pacotes:</h2>
+<p>Depois de instalar um pacote em seu computador, ele não está imediatamente disponível para uso. Para utilizar um pacote, você precisa carregá-lo utilizando a função <code>library()</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>dados <span class="sc">|&gt;</span> </span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(prova) <span class="sc">|&gt;</span></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_nota =</span> <span class="fu">mean</span>(nota),</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">sd_nota =</span> <span class="fu">sd</span>(nota)) <span class="sc">|&gt;</span>  </span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="fu">factor</span>(prova), mean_nota, <span class="at">color =</span> prova))<span class="sc">+</span></span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>)<span class="sc">+</span></span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> mean_nota <span class="sc">-</span> sd_nota,</span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>                    <span class="at">ymax =</span> mean_nota <span class="sc">+</span> sd_nota),</span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>                <span class="at">width =</span> <span class="fl">0.05</span>)<span class="sc">+</span></span>
-<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>      <span class="fu">theme_bw</span>()<span class="sc">+</span></span>
-<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)  <span class="sc">+</span></span>
-<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>,<span class="dv">100</span>)<span class="sc">+</span></span>
-<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(       <span class="at">y =</span> <span class="st">"Nota média"</span>,</span>
-<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Provas"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="Aula5_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Exemplo:</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
-</div>
-<p>Neste gráfico, os pontos indicam o valor médio das notas para cada prova e as barras representam os intervalos de confianças.</p>
-</section>
-</section>
-<section id="conclusão" class="level3">
-<h3 class="anchored" data-anchor-id="conclusão">Conclusão</h3>
-<p>Com estes dados foi possível calcular e visualizar a frequência, a média, o desvio padrão, além de outros descritores, possibilitando fornecer insights sobre a dispersão dos dados em relação à média. Pode-se concluir que o desempenho dos alunos nas duas provas foi muito semelhante e que, apesar da variabilidade nas notas individuais, o desempenho médio dos alunos foi superior ao valor de corte estabelecido para a disciplina (70.00) Este resultado sugere uma performance satisfatória, indicando uma compreensão adequada do conteúdo da disciplina.</p>
 
 
-</section>
 </section>
 </section>
 

@@ -21,7 +21,7 @@ library(patchwork)
 
 # Importação de dados
 
-Importação do conjunto de dados que contém os pontos e notas de cada aluno para as sabatinas da disciplina de Análise de Dados. Para isso, utilizamos a função *gsheet2tbl* do pacote **gsheet**.
+Importação do conjunto de dados que contém os pontos e notas de cada aluno para as sabatinas da disciplina de Análise de Dados. Para isso, utilizamos a função `gsheet2tbl` do pacote **gsheet**.
 
 ```{r}
 dados <- gsheet2tbl("https://docs.google.com/spreadsheets/d/1bq2N19DcZdtax2fQW9OHSGMR0X2__Z9T/edit#gid=1092065531")
@@ -33,14 +33,14 @@ dados <- gsheet2tbl("https://docs.google.com/spreadsheets/d/1bq2N19DcZdtax2fQW9O
 
 ### Sumarização dos dados
 
-Através da função *summary* do R base é possível obter uma sumarização geral dos dados, onde sabemos a média geral e outras informações das notas dos alunos para as duas provas realizadas.
+Através da função `summary` do R base é possível obter uma sumarização geral dos dados, onde sabemos a média geral e outras informações das notas dos alunos para as duas provas realizadas.
 
 ```{r}
 dados |> 
   summary()
 ```
 
-Utilizando o *group_by* e *summarise*, ambas funções do pacote **dplyr**, é possível calcular as informações de média, mediana e desvio padrão para cada prova, de forma que conseguimos visualizar em qual das avaliações obtivemos um melhor resultado.
+Utilizando o `group_by` e `summarise`, ambas funções do pacote **dplyr**, é possível calcular as informações de média, mediana e desvio padrão para cada prova, de forma que conseguimos visualizar em qual das avaliações obtivemos um melhor resultado.
 
 ```{r}
 dados |> 
@@ -55,7 +55,7 @@ Com isso, foi possível verificar que as duas avaliações apresentaram médias 
 
 ### Gráficos
 
-Para facilitar a visualização dos dados, foram elaborados alguns gráficos. Os gráficos foram confeccionados utilizando a função *ggplot* do pacote **ggplot2**.
+Para facilitar a visualização dos dados, foram elaborados alguns gráficos. Os gráficos foram confeccionados utilizando a função `ggplot` do pacote **ggplot2**.
 
 #### Histograma
 
@@ -79,7 +79,7 @@ Neste gráfico é possível visualizar a frequência de notas. Além disso, a li
 
 ##### Quantos alunos possuem nota maior ou igual à 70.00?
 
-Para saber essa informação iremos utilizar a função *filter*, *group_by* e *count* do pacote **dplyr**.
+Para saber essa informação iremos utilizar a função `filter`, `group_by` e `count` do pacote **dplyr**.
 
 ```{r}
 dados |> 

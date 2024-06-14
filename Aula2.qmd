@@ -31,7 +31,7 @@ df1 <- multi_isolate
 
 # Outras formas de carregar um conjunto de dados
 
-Outras formas de carregar um conjunto de dados utilizando diferentes funções do pacote **readxl**, que permite importar para o R dados presentes em arquivos de diferentes formatos. Também utilizamos o pacote **gsheet**, com a função *gsheet2tbl*, que permite importar planilhas direto do Google Sheet.
+Outras formas de carregar um conjunto de dados utilizando diferentes funções do pacote **readxl**, que permite importar para o R dados presentes em arquivos de diferentes formatos. Também utilizamos o pacote **gsheet**, com a função *`gsheet2tbl`*, que permite importar planilhas direto do Google Sheet.
 
 ```{r}
 df21 <- read_excel("dados-diversos.xlsx", 2)

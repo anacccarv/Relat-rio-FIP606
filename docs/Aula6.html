@@ -127,26 +127,37 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
-  <li class="nav-item">
-    <a class="nav-link" href="./Aula1.html"> 
-<span class="menu-text">Fundamentos</span></a>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-fundamentos" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Fundamentos</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-fundamentos">    
+        <li>
+    <a class="dropdown-item" href="./Introdução.html">
+ <span class="dropdown-text">Introdução</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="./Aula1.html">
+ <span class="dropdown-text">Algumas funções do R</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./Aula2.html">
+ <span class="dropdown-text">Importação e visualização dos dados</span></a>
+  </li>  
+    </ul>
+  </li>
   <li class="nav-item dropdown ">
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-visualização-dos-dados" role="button" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Visualização dos dados</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-visualização-dos-dados">    
         <li>
-    <a class="dropdown-item" href="./Aula2.html">
- <span class="dropdown-text">Introdução ao ggplot</span></a>
-  </li>  
-        <li>
     <a class="dropdown-item" href="./Aula3.html">
- <span class="dropdown-text">Gráficos com ggplot - Parte 2</span></a>
+ <span class="dropdown-text">Gráficos com ggplot</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="./Aula4.html">
- <span class="dropdown-text">Gráficos com ggplot - Parte 3</span></a>
+ <span class="dropdown-text">Gráficos com ggplot - Parte 2</span></a>
   </li>  
     </ul>
   </li>
@@ -286,7 +297,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="teste-t" class="level4">
 <h4 class="anchored" data-anchor-id="teste-t">Teste T</h4>
-<p>Função que roda o teste T: <strong><em>t.test</em></strong></p>
+<p>Função que roda o teste T: <code>t.test</code></p>
 <p>Para o t.test precisa que os dados estejam no formato largo (a função pede os dados (tratamentos) em colunas separadas).</p>
 <p>Também precisa verificar: homogeneidade de variâncias e normalidade (Shapiro-wilk test).</p>
 <div class="cell">
@@ -909,7 +920,7 @@ Bartlett's K-squared = 4.4367, df = 4, p-value = 0.3501</code></pre>
 </div>
 <p>F é o que tem maior variância, o que tem menor é o C e D (tem outlier), parece que (visualmente) as variâncias não são homogêneas.</p>
 <p>1º Ajusta ANOVA 2º trabalha com resíduos da ANOVA (aplica os testes)</p>
-<p><strong>lm</strong> = função que ajusta anova</p>
+<p><code>lm</code> = função que ajusta anova</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb71"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(count <span class="sc">~</span> spray,</span>
 <span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">data =</span> inseticida)</span>
@@ -1013,7 +1024,7 @@ Bartlett's K-squared = 25.96, df = 5, p-value = 9.085e-05</code></pre>
 <section id="alternativa-1-fazer-a-transformação-dos-dados" class="level3">
 <h3 class="anchored" data-anchor-id="alternativa-1-fazer-a-transformação-dos-dados">Alternativa 1: fazer a transformação dos dados</h3>
 <p>Normalmente, quando tem contagem (numérica discreta), raiz quadrada resolve.</p>
-<p>Função <strong>sqrt</strong> faz a raiz quadrada.</p>
+<p>Função <code>sqrt</code> faz a raiz quadrada.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb86"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a>inseticida <span class="ot">&lt;-</span> inseticida <span class="sc">|&gt;</span> </span>
 <span id="cb86-2"><a href="#cb86-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">count2 =</span> <span class="fu">sqrt</span>(count))</span>

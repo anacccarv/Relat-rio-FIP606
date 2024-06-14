@@ -18,17 +18,21 @@ website:
     
     left:
 
-      - href: Aula1.qmd
-        text: Fundamentos
+      - text: Fundamentos
+        menu:
+          - href: Introdução.qmd
+            text: Introdução
+          - href: Aula1.qmd
+            text: Algumas funções do R
+          - href: Aula2.qmd
+            text: Importação e visualização dos dados
         
       - text: Visualização dos dados
         menu:
-          - href: Aula2.qmd
-            text: Introdução ao ggplot
           - href: Aula3.qmd
-            text: Gráficos com ggplot - Parte 2
+            text: Gráficos com ggplot
           - href: Aula4.qmd
-            text: Gráficos com ggplot - Parte 3
+            text: Gráficos com ggplot - Parte 2
         
       - href: Aula5.qmd
         text: Análise Descritiva

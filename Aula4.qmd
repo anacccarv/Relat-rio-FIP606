@@ -92,7 +92,7 @@ pepper <-
 
 ## Mudando o formato da tabela
 
-Para permitir a visualização dos dados através do ggplot é importante que os dados estejam no formato correto. A função ***pivot_longer*** permite passar uma tabela que está no formato largo para o formato longo. De igual modo, a função ***pivot_wider*** permite transformar a tabela do formato longo para formato largo.
+Para permitir a visualização dos dados através do ggplot é importante que os dados estejam no formato correto. A função `pivot_longer` permite passar uma tabela que está no formato largo para o formato longo. De igual modo, a função `pivot_wider` permite transformar a tabela do formato longo para formato largo.
 
 ```{r}
 pepper1 <- pepper |> 
@@ -105,9 +105,9 @@ pepper1 <- pepper |>
 
 Agora com os dados transformados é possível visualizar no **ggplot**.
 
-Vamos utilizar a função ***annotate*** para colocar informações no gráfico (etiquetas, equações...).
+Vamos utilizar a função `annotate` para colocar informações no gráfico (etiquetas, equações...).
 
-Como já temos os nº das linhas dentro do próprio gráfico não precisa da legenda, por isso **legend.position = "none",** para tirar a legenda.
+Como já temos os nº das linhas dentro do próprio gráfico não precisa da legenda, por isso `legend.position = "none"`, para tirar a legenda.
 
 ```{r}
 pepper1 |> 
@@ -133,9 +133,9 @@ cr <- read_csv("https://raw.githubusercontent.com/emdelponte/paper-coffee-rust-E
 
 ## Esquematizando a tabela
 
-Vai fazer uma contagem de uma váriavel categórica (quantas ocorrências tem) através da função ***count***. Função interessante para fazer um sumário de variáveis categóricas de forma rápida.
+Vai fazer uma contagem de uma váriavel categórica (quantas ocorrências tem) através da função `count`. Função interessante para fazer um sumário de variáveis categóricas de forma rápida.
 
-Também podemos usar a função tabyl do pacote **janitor** para fazer a contagem - cruzando as variaveis (ex: zone e region) temos a tabela de contigência.
+Também podemos usar a função `tabyl` do pacote **janitor** para fazer a contagem - cruzando as variaveis (ex: zone e region) temos a tabela de contigência.
 
 As **tabelas de contingência** de frequências relativas mostram que porcentagem dos dados se encaixa em cada categoria.
 
@@ -173,8 +173,6 @@ cr2 |>
   
 
 ```
-
-## 
 
 ```{r}
 mg <- gsheet2tbl("https://docs.google.com/spreadsheets/d/1aID5Dh6PlBVCKzU1j7k-WA6zuWQWE2NhtWEgdJtt5iA/edit?usp=sharing")

@@ -127,45 +127,63 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
-  <li class="nav-item">
-    <a class="nav-link" href="./Aula1.html"> 
-<span class="menu-text">Fundamentos</span></a>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-fundamentos" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Fundamentos</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-fundamentos">    
+        <li>
+    <a class="dropdown-item" href="./Introdução.html">
+ <span class="dropdown-text">Introdução</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="./Aula1.html">
+ <span class="dropdown-text">Algumas funções do R</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./Aula2.html">
+ <span class="dropdown-text">Importação e visualização dos dados</span></a>
+  </li>  
+    </ul>
+  </li>
   <li class="nav-item dropdown ">
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-visualização-dos-dados" role="button" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Visualização dos dados</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-visualização-dos-dados">    
         <li>
-    <a class="dropdown-item" href="./Aula2.html">
- <span class="dropdown-text">Introdução ao ggplot</span></a>
+    <a class="dropdown-item" href="./Aula3.html">
+ <span class="dropdown-text">Gráficos com ggplot</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./Aula3.html">
+    <a class="dropdown-item" href="./Aula4.html">
  <span class="dropdown-text">Gráficos com ggplot - Parte 2</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item">
-    <a class="nav-link active" href="./Aula4.html" aria-current="page"> 
-<span class="menu-text">Análise exploratória</span></a>
-  </li>  
-  <li class="nav-item">
     <a class="nav-link" href="./Aula5.html"> 
-<span class="menu-text">Aula 5</span></a>
+<span class="menu-text">Análise Descritiva</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./Aula6.html"> 
-<span class="menu-text">Aulas 6 e 7</span></a>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-análise-inferencial" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Análise Inferencial</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-análise-inferencial">    
+        <li>
+    <a class="dropdown-item" href="./Aula6.html">
+ <span class="dropdown-text">Teste T e ANOVA</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./Aula8.html"> 
-<span class="menu-text">Aula 8</span></a>
+        <li>
+    <a class="dropdown-item" href="./Aula8.html">
+ <span class="dropdown-text">ANOVA</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./Aula9_10.html"> 
-<span class="menu-text">Aulas 9 e 10</span></a>
+        <li>
+    <a class="dropdown-item" href="./Aula9_10.html">
+ <span class="dropdown-text">Análise de Modelo Misto, Correlação Linear e Regressão Linear</span></a>
   </li>  
+    </ul>
+  </li>
 </ul>
           </div> <!-- /navcollapse -->
           <div class="quarto-navbar-tools tools-wide">
@@ -197,7 +215,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#importação-dos-dados-1" id="toc-importação-dos-dados-1" class="nav-link" data-scroll-target="#importação-dos-dados-1">Importação dos dados</a></li>
   <li><a href="#esquematizando-a-tabela" id="toc-esquematizando-a-tabela" class="nav-link" data-scroll-target="#esquematizando-a-tabela">Esquematizando a tabela</a></li>
   <li><a href="#visualização-dos-dados-com-ggplot" id="toc-visualização-dos-dados-com-ggplot" class="nav-link" data-scroll-target="#visualização-dos-dados-com-ggplot">Visualização dos dados com ggplot</a></li>
-  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"></a></li>
   </ul></li>
   </ul>
 </nav>
@@ -302,7 +319,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <section id="mudando-o-formato-da-tabela" class="level2">
 <h2 class="anchored" data-anchor-id="mudando-o-formato-da-tabela">Mudando o formato da tabela</h2>
-<p>Para permitir a visualização dos dados através do ggplot é importante que os dados estejam no formato correto. A função <strong><em>pivot_longer</em></strong> permite passar uma tabela que está no formato largo para o formato longo. De igual modo, a função <strong><em>pivot_wider</em></strong> permite transformar a tabela do formato longo para formato largo.</p>
+<p>Para permitir a visualização dos dados através do ggplot é importante que os dados estejam no formato correto. A função <code>pivot_longer</code> permite passar uma tabela que está no formato largo para o formato longo. De igual modo, a função <code>pivot_wider</code> permite transformar a tabela do formato longo para formato largo.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>pepper1 <span class="ot">&lt;-</span> pepper <span class="sc">|&gt;</span> </span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="dv">2</span><span class="sc">:</span><span class="dv">4</span>,</span>
@@ -313,8 +330,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="visualização-dos-dados" class="level2">
 <h2 class="anchored" data-anchor-id="visualização-dos-dados">Visualização dos dados</h2>
 <p>Agora com os dados transformados é possível visualizar no <strong>ggplot</strong>.</p>
-<p>Vamos utilizar a função <strong><em>annotate</em></strong> para colocar informações no gráfico (etiquetas, equações…).</p>
-<p>Como já temos os nº das linhas dentro do próprio gráfico não precisa da legenda, por isso <strong>legend.position = “none”,</strong> para tirar a legenda.</p>
+<p>Vamos utilizar a função <code>annotate</code> para colocar informações no gráfico (etiquetas, equações…).</p>
+<p>Como já temos os nº das linhas dentro do próprio gráfico não precisa da legenda, por isso <code>legend.position = "none"</code>, para tirar a legenda.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>pepper1 <span class="sc">|&gt;</span> </span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(t, inc, <span class="at">color =</span> epidemic))<span class="sc">+</span></span>
@@ -344,8 +361,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="esquematizando-a-tabela" class="level2">
 <h2 class="anchored" data-anchor-id="esquematizando-a-tabela">Esquematizando a tabela</h2>
-<p>Vai fazer uma contagem de uma váriavel categórica (quantas ocorrências tem) através da função <strong><em>count</em></strong>. Função interessante para fazer um sumário de variáveis categóricas de forma rápida.</p>
-<p>Também podemos usar a função tabyl do pacote <strong>janitor</strong> para fazer a contagem - cruzando as variaveis (ex: zone e region) temos a tabela de contigência.</p>
+<p>Vai fazer uma contagem de uma váriavel categórica (quantas ocorrências tem) através da função <code>count</code>. Função interessante para fazer um sumário de variáveis categóricas de forma rápida.</p>
+<p>Também podemos usar a função <code>tabyl</code> do pacote <strong>janitor</strong> para fazer a contagem - cruzando as variaveis (ex: zone e region) temos a tabela de contigência.</p>
 <p>As <strong>tabelas de contingência</strong> de frequências relativas mostram que porcentagem dos dados se encaixa em cada categoria.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>cr <span class="sc">|&gt;</span> </span>
@@ -420,9 +437,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-</section>
-<section id="section" class="level2">
-<h2 class="anchored" data-anchor-id="section"></h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>mg <span class="ot">&lt;-</span> <span class="fu">gsheet2tbl</span>(<span class="st">"https://docs.google.com/spreadsheets/d/1aID5Dh6PlBVCKzU1j7k-WA6zuWQWE2NhtWEgdJtt5iA/edit?usp=sharing"</span>)</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>

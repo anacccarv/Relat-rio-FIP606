@@ -1,6 +1,5 @@
 ---
-title: "Aula1"
-author: "Ana Carolyne"
+title: "Algumas funções do R"
 format: "html"
 editor: visual
 editor_options: 
@@ -9,7 +8,11 @@ message: false
 warning: false
 ---
 
-# Introdução: algumas funções básicas do R
+Na primeira aula da disciplina, utilizamos o RStudio para testar e aprender alguns pacotes e funções do R.
+
+# Criação de um data frame
+
+Os data frames são estruturas de dados amplamente utilizadas para armazenar informações em R. Esses objetos bidimensionais são compostos por linhas e colunas, sendo essencialmente tabelas que lembram superficialmente matrizes. A principal distinção é que, ao contrário das matrizes, onde todos os dados devem ser do mesmo tipo, os data frames permitem a mistura de diferentes tipos de dados. Isso os torna extremamente flexíveis e adequados para representar conjuntos de dados complexos, onde diferentes variáveis podem ser de tipos distintos, como números, texto e fatores.
 
 ```{r}
 A <- c(1:10)
@@ -33,6 +36,8 @@ dates <- c(14, 21, 28) #days
 evaluation <- c(40, 80, 90)
 audpc(evaluation, dates)
 ```
+
+## Pacote epifitter
 
 ```{r}
 library(epifitter)
@@ -62,6 +67,8 @@ df|>
 # Para selecionar colunas específicas do DF:
 
 ```{r}
+# Usando o tidyverse:
+
 df |> 
   select(speed)
 ```

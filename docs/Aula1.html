@@ -6,9 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Ana Carolyne">
 
-<title>FIP606 - Aula1</title>
+<title>FIP606 - Algumas funções do R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -128,10 +127,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
-  <li class="nav-item">
-    <a class="nav-link active" href="./Aula1.html" aria-current="page"> 
-<span class="menu-text">Fundamentos</span></a>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-fundamentos" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Fundamentos</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-fundamentos">    
+        <li>
+    <a class="dropdown-item" href="./Introdução.html">
+ <span class="dropdown-text">Introdução</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="./Aula1.html">
+ <span class="dropdown-text">Algumas funções do R</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./Aula2.html">
+ <span class="dropdown-text">Importação dos dados</span></a>
+  </li>  
+    </ul>
+  </li>
   <li class="nav-item dropdown ">
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-visualização-dos-dados" role="button" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Visualização dos dados</span>
@@ -145,28 +159,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <a class="dropdown-item" href="./Aula3.html">
  <span class="dropdown-text">Gráficos com ggplot - Parte 2</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="./Aula4.html">
+ <span class="dropdown-text">Gráficos com ggplot - Parte 3</span></a>
+  </li>  
     </ul>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="./Aula4.html"> 
-<span class="menu-text">Aula 4</span></a>
-  </li>  
-  <li class="nav-item">
     <a class="nav-link" href="./Aula5.html"> 
-<span class="menu-text">Aula 5</span></a>
+<span class="menu-text">Análise Descritiva</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./Aula6.html"> 
-<span class="menu-text">Aulas 6 e 7</span></a>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-análise-inferencial" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Análise Inferencial</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-análise-inferencial">    
+        <li>
+    <a class="dropdown-item" href="./Aula6.html">
+ <span class="dropdown-text">Teste T e ANOVA</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./Aula8.html"> 
-<span class="menu-text">Aula 8</span></a>
+        <li>
+    <a class="dropdown-item" href="./Aula8.html">
+ <span class="dropdown-text">ANOVA</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./Aula9_10.html"> 
-<span class="menu-text">Aulas 9 e 10</span></a>
+        <li>
+    <a class="dropdown-item" href="./Aula9_10.html">
+ <span class="dropdown-text">Análise de Modelo Misto, Correlação Linear e Regressão Linear</span></a>
   </li>  
+    </ul>
+  </li>
 </ul>
           </div> <!-- /navcollapse -->
           <div class="quarto-navbar-tools tools-wide">
@@ -186,9 +207,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#introdução-algumas-funções-básicas-do-r" id="toc-introdução-algumas-funções-básicas-do-r" class="nav-link active" data-scroll-target="#introdução-algumas-funções-básicas-do-r">Introdução: algumas funções básicas do R</a>
+  <li><a href="#criação-de-um-data-frame" id="toc-criação-de-um-data-frame" class="nav-link active" data-scroll-target="#criação-de-um-data-frame">Criação de um data frame</a>
   <ul class="collapse">
   <li><a href="#pacote-agricolae" id="toc-pacote-agricolae" class="nav-link" data-scroll-target="#pacote-agricolae">Pacote agricolae</a></li>
+  <li><a href="#pacote-epifitter" id="toc-pacote-epifitter" class="nav-link" data-scroll-target="#pacote-epifitter">Pacote epifitter</a></li>
   </ul></li>
   <li><a href="#para-adicionar-mais-uma-coluna-no-dataframe" id="toc-para-adicionar-mais-uma-coluna-no-dataframe" class="nav-link" data-scroll-target="#para-adicionar-mais-uma-coluna-no-dataframe">Para adicionar mais uma coluna no dataframe:</a></li>
   <li><a href="#para-selecionar-colunas-específicas-do-df" id="toc-para-selecionar-colunas-específicas-do-df" class="nav-link" data-scroll-target="#para-selecionar-colunas-específicas-do-df">Para selecionar colunas específicas do DF:</a></li>
@@ -200,19 +222,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Aula1</h1>
+<h1 class="title">Algumas funções do R</h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Ana Carolyne </p>
-          </div>
-  </div>
     
   
     
@@ -223,8 +239,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="introdução-algumas-funções-básicas-do-r" class="level1">
-<h1>Introdução: algumas funções básicas do R</h1>
+<p>Na primeira aula da disciplina, utilizamos o RStudio para testar e aprender alguns pacotes e funções do R.</p>
+<section id="criação-de-um-data-frame" class="level1">
+<h1>Criação de um data frame</h1>
+<p>Os data frames são estruturas de dados amplamente utilizadas para armazenar informações em R. Esses objetos bidimensionais são compostos por linhas e colunas, sendo essencialmente tabelas que lembram superficialmente matrizes. A principal distinção é que, ao contrário das matrizes, onde todos os dados devem ser do mesmo tipo, os data frames permitem a mistura de diferentes tipos de dados. Isso os torna extremamente flexíveis e adequados para representar conjuntos de dados complexos, onde diferentes variáveis podem ser de tipos distintos, como números, texto e fatores.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>A <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>B <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">11</span><span class="sc">:</span><span class="dv">20</span>)</span>
@@ -255,6 +273,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       1015 </code></pre>
 </div>
 </div>
+</section>
+<section id="pacote-epifitter" class="level2">
+<h2 class="anchored" data-anchor-id="pacote-epifitter">Pacote epifitter</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(epifitter)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
