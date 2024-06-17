@@ -43,8 +43,8 @@ website:
             text: Teste T e ANOVA
           - href: Aula8.qmd
             text: ANOVA
-          - href: Aula9_10.qmd
-            text: Análise de Modelo Misto, Correlação Linear e Regressão Linear
+          - href: Aula9.qmd
+            text: Análise de Modelo Misto, Correlação e Regressão Linear
         
     tools:
       - icon: linkedin

@@ -1,5 +1,5 @@
 ---
-title: "Aula3"
+title: "Gráficos com ggplot"
 format: html
 editor: visual
 editor_options: 

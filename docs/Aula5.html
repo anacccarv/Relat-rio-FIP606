@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>FIP606 - Aula 5</title>
+<title>FIP606 - Análise Descritiva</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -179,8 +179,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="dropdown-text">ANOVA</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./Aula9_10.html">
- <span class="dropdown-text">Análise de Modelo Misto, Correlação Linear e Regressão Linear</span></a>
+    <a class="dropdown-item" href="./Aula9.html">
+ <span class="dropdown-text">Análise de Modelo Misto, Correlação e Regressão Linear</span></a>
   </li>  
     </ul>
   </li>
@@ -222,7 +222,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Aula 5</h1>
+<h1 class="title">Análise Descritiva</h1>
 </div>
 
 
@@ -252,7 +252,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="importação-de-dados" class="level1">
 <h1>Importação de dados</h1>
-<p>Importação do conjunto de dados que contém os pontos e notas de cada aluno para as sabatinas da disciplina de Análise de Dados. Para isso, utilizamos a função <em>gsheet2tbl</em> do pacote <strong>gsheet</strong>.</p>
+<p>Importação do conjunto de dados que contém os pontos e notas de cada aluno para as sabatinas da disciplina de Análise de Dados. Para isso, utilizamos a função <code>gsheet2tbl</code> do pacote <strong>gsheet</strong>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>dados <span class="ot">&lt;-</span> <span class="fu">gsheet2tbl</span>(<span class="st">"https://docs.google.com/spreadsheets/d/1bq2N19DcZdtax2fQW9OHSGMR0X2__Z9T/edit#gid=1092065531"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -263,7 +263,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="visualização-dos-dados">Visualização dos dados</h2>
 <section id="sumarização-dos-dados" class="level3">
 <h3 class="anchored" data-anchor-id="sumarização-dos-dados">Sumarização dos dados</h3>
-<p>Através da função <em>summary</em> do R base é possível obter uma sumarização geral dos dados, onde sabemos a média geral e outras informações das notas dos alunos para as duas provas realizadas.</p>
+<p>Através da função <code>summary</code> do R base é possível obter uma sumarização geral dos dados, onde sabemos a média geral e outras informações das notas dos alunos para as duas provas realizadas.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>dados <span class="sc">|&gt;</span> </span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summary</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -277,7 +277,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  Max.   :2.0   Max.   :16.00   Max.   :100.00  </code></pre>
 </div>
 </div>
-<p>Utilizando o <em>group_by</em> e <em>summarise</em>, ambas funções do pacote <strong>dplyr</strong>, é possível calcular as informações de média, mediana e desvio padrão para cada prova, de forma que conseguimos visualizar em qual das avaliações obtivemos um melhor resultado.</p>
+<p>Utilizando o <code>group_by</code> e <code>summarise</code>, ambas funções do pacote <strong>dplyr</strong>, é possível calcular as informações de média, mediana e desvio padrão para cada prova, de forma que conseguimos visualizar em qual das avaliações obtivemos um melhor resultado.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>dados <span class="sc">|&gt;</span> </span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(prova) <span class="sc">|&gt;</span> </span>
@@ -297,7 +297,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="gráficos" class="level3">
 <h3 class="anchored" data-anchor-id="gráficos">Gráficos</h3>
-<p>Para facilitar a visualização dos dados, foram elaborados alguns gráficos. Os gráficos foram confeccionados utilizando a função <em>ggplot</em> do pacote <strong>ggplot2</strong>.</p>
+<p>Para facilitar a visualização dos dados, foram elaborados alguns gráficos. Os gráficos foram confeccionados utilizando a função <code>ggplot</code> do pacote <strong>ggplot2</strong>.</p>
 <section id="histograma" class="level4">
 <h4 class="anchored" data-anchor-id="histograma">Histograma</h4>
 <div class="cell">
@@ -324,7 +324,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Neste gráfico é possível visualizar a frequência de notas. Além disso, a linha chamuscada indica o local onde a nota é igual a 70.00, ou seja, após esta linha, estão as notas com valor maior ou igual à nota necessária para aprovação na disciplina.</p>
 <section id="quantos-alunos-possuem-nota-maior-ou-igual-à-70.00" class="level5">
 <h5 class="anchored" data-anchor-id="quantos-alunos-possuem-nota-maior-ou-igual-à-70.00">Quantos alunos possuem nota maior ou igual à 70.00?</h5>
-<p>Para saber essa informação iremos utilizar a função <em>filter</em>, <em>group_by</em> e <em>count</em> do pacote <strong>dplyr</strong>.</p>
+<p>Para saber essa informação iremos utilizar a função <code>filter</code>, <code>group_by</code> e <code>count</code> do pacote <strong>dplyr</strong>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>dados <span class="sc">|&gt;</span> </span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(nota <span class="sc">&gt;</span> <span class="fl">70.00</span>) <span class="sc">|&gt;</span> </span>

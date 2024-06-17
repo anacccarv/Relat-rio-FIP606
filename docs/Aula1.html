@@ -142,7 +142,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>  
         <li>
     <a class="dropdown-item" href="./Aula2.html">
- <span class="dropdown-text">Importação dos dados</span></a>
+ <span class="dropdown-text">Importação e visualização dos dados</span></a>
   </li>  
     </ul>
   </li>
@@ -152,16 +152,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-visualização-dos-dados">    
         <li>
-    <a class="dropdown-item" href="./Aula2.html">
- <span class="dropdown-text">Introdução ao ggplot</span></a>
-  </li>  
-        <li>
     <a class="dropdown-item" href="./Aula3.html">
- <span class="dropdown-text">Gráficos com ggplot - Parte 2</span></a>
+ <span class="dropdown-text">Gráficos com ggplot</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="./Aula4.html">
- <span class="dropdown-text">Gráficos com ggplot - Parte 3</span></a>
+ <span class="dropdown-text">Gráficos com ggplot - Parte 2</span></a>
   </li>  
     </ul>
   </li>
@@ -183,8 +179,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="dropdown-text">ANOVA</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./Aula9_10.html">
- <span class="dropdown-text">Análise de Modelo Misto, Correlação Linear e Regressão Linear</span></a>
+    <a class="dropdown-item" href="./Aula9.html">
+ <span class="dropdown-text">Análise de Modelo Misto, Correlação e Regressão Linear</span></a>
   </li>  
     </ul>
   </li>
@@ -401,8 +397,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="para-selecionar-colunas-específicas-do-df" class="level1">
 <h1>Para selecionar colunas específicas do DF:</h1>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span> </span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(speed)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Usando o tidyverse:</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span> </span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(speed)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   speed
 1      4

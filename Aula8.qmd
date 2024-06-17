@@ -1,5 +1,5 @@
 ---
-title: "Aula 8"
+title: "ANOVA"
 format: html
 editor: visual
 message: false
