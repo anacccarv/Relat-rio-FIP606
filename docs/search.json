@@ -32,7 +32,14 @@
     "href": "Introdução.html#carregamento-de-pacotes",
     "title": "introducao",
     "section": "Carregamento de pacotes:",
-    "text": "Carregamento de pacotes:\nDepois de instalar um pacote em seu computador, ele não está imediatamente disponível para uso. Para utilizar um pacote, você precisa carregá-lo utilizando a função library().\n\n#Exemplo:\nlibrary(tidyverse)"
+    "text": "Carregamento de pacotes:\nDepois de instalar um pacote em seu computador, ele não está imediatamente disponível para uso. Para utilizar um pacote, você precisa carregá-lo utilizando a função library().\n\n#Exemplo:\nlibrary(tidyverse)\n\nA função library() também carregará quaisquer pacotes adicionais necessários e poderá imprimir informações adicionais do pacote.\nDica: colocar todos pacotes necessários para a análise no topo dos scripts em um chunk específico para torná-los mais acessíveis e fáceis de encontrar.\nAs vezes, pode ser útil usar uma função sem primeiro usar a função library(). Por exemplo, se for utilizar apenas uma ou duas funções em seu script e não quiser carregar o pacote completo, poderá acessar a função diretamente, basta especificar o nome do pacote seguido de :: e o nome da função.\n\n#Exemplo:\n#tidyverse::select()"
+  },
+  {
+    "objectID": "Aula9.html",
+    "href": "Aula9.html",
+    "title": "Análise de Modelo Misto, Correlação e Regressão Linear",
+    "section": "",
+    "text": "Parcelas subdividas: dentro de cada bloco tem os hibridos aleatoriamente. Naquele bloco, subdivido, aleatorizou o método dentro dos blocos – ou seja, o método foi aleatorizado entre os hibridos em cada bloco. “Hibrido dentro do bloco e método dentro do híbrido”.\nPode utilizar um modelo misto (mistura de um fator de efeito fixo e um fator de efeito aleatório)."
   },
   {
     "objectID": "Aula9.html#index-modelo-para-subdividido",
@@ -292,12 +299,5 @@
     "title": "FIP 606",
     "section": "",
     "text": "Este website é dedicado à disciplina FIP 606 - Análise e Visualização de Dados em Fitopatologia, oferecida pela Universidade Federal de Viçosa e ministrada pelo professor Emerson M. Del Ponte.\nNeste site, você encontrará todo o material das aulas, com códigos comentados e organizados de acordo com o cronograma da disciplina. O objetivo é facilitar o acesso ao conhecimento e fomentar o interesse pela análise de dados fitopatológicos utilizando o RStudio.\nConvido você a explorar os conteúdos disponíveis e a aproveitar ao máximo os recursos oferecidos. Se tiver qualquer dúvida ou sugestão, sinta-se à vontade para entrar em contato. Boa aprendizagem!"
-  },
-  {
-    "objectID": "Aula9.html",
-    "href": "Aula9.html",
-    "title": "Análise de Modelo Misto, Correlação e Regressão Linear",
-    "section": "",
-    "text": "Parcelas subdividas: dentro de cada bloco tem os hibridos aleatoriamente. Naquele bloco, subdivido, aleatorizou o método dentro dos blocos – ou seja, o método foi aleatorizado entre os hibridos em cada bloco. “Hibrido dentro do bloco e método dentro do híbrido”.\nPode utilizar um modelo misto (mistura de um fator de efeito fixo e um fator de efeito aleatório)."
   }
 ]
