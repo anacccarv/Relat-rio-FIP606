@@ -1,10 +1,8 @@
 ---
-title: "introducao"
+title: "Introdução"
 message: false
 warning: false
 ---
-
-# Introdução
 
 R é uma linguagem de programação e ambiente de software livre amplamente utilizado para análise estatística, visualização de dados e ciência de dados. Criado por Ross Ihaka e Robert Gentleman na década de 1990, R teve sua primeira versão estável lançada em 2000 e, desde então, tem crescido em popularidade devido a suas poderosas capacidades e à forte comunidade de usuários e desenvolvedores.
 
