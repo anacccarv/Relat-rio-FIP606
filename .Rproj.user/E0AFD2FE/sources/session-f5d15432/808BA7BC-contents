@@ -124,7 +124,7 @@ leaflet() |>
 # para mostrar os pontos (dos experimentos Soybean Rust) no mapa:
 leaflet(sbr) |>
   addTiles() |> 
-  setView(lng = -42.8825, lat = -20.7546, zoom = 5) |> 
+  #setView(lng = -42.8825, lat = -20.7546, zoom = 5) |> 
   addCircleMarkers(radius = 2)
 ```
 

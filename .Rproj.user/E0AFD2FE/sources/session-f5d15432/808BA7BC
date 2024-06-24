@@ -3,7 +3,7 @@
     "path": "~/Relat-rio-FIP606/aula12.qmd",
     "project_path": "aula12.qmd",
     "type": "quarto_markdown",
-    "hash": "1340376272",
+    "hash": "1242397609",
     "contents": "",
     "dirty": false,
     "created": 1719232745205.0,
@@ -17,15 +17,15 @@
         "docOutlineVisible": "1",
         "rmdVisualCollapsedChunks": "",
         "rmdVisualModeLocation": "2:1600",
-        "cursorPosition": "101,0",
-        "scrollLine": "94"
+        "cursorPosition": "126,3",
+        "scrollLine": "121"
     },
     "folds": "",
-    "lastKnownWriteTime": 1719232791,
+    "lastKnownWriteTime": 1719232910,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1719232791622,
+    "last_content_update": 1719232910046,
     "read_only": false,
     "read_only_alternatives": []
 }
