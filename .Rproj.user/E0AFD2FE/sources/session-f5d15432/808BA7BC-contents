@@ -1,0 +1,156 @@
+---
+title: "Criando mapas no R"
+format: html
+editor: visual
+message: false
+warning: false
+---
+
+```{r}
+#remotes::install_github(("ropensci/rnaturalearthhires"))
+
+library(rnaturalearth)
+library(rnaturalearthhires)
+
+
+BRA <- ne_states(country = "Brazil", #contorno dos estados
+                returnclass = "sf")
+
+PERU <- ne_countries(country = "Peru",
+                      returnclass = "sf") #contorno do país
+
+library(tidyverse)
+ggplot(BRA) +
+  geom_sf(fill = "black",
+          color = "yellow",
+          linewidth = 1)
+```
+
+## Plotando o mapa
+
+Com um dataframe que tenha as informações de longitude e latitude é possível plotar um mapa com pontos em locais específicos e a partir daí, sobrepor um mapa.
+
+```{r}
+library(r4pde)
+sbr <- RustSoybean
+
+library(ggthemes)
+
+sbr |> 
+  ggplot(aes(longitude, latitude))+
+  geom_point()+
+  coord_sf()
+
+ggplot(BRA) +
+  geom_sf(fill = "black",
+          color = "yellow",
+          linewidth = 1)+
+  geom_point(data = sbr, aes(longitude, latitude), color = "red")+
+  theme_map()
+
+
+```
+
+## Colocando uma camada para apenas o estado de MG:
+
+```{r}
+  MG <- BRA |>
+  filter(name_en == "Minas Gerais")
+
+ggplot(BRA) +
+  geom_sf(fill = "black",
+          color = "yellow",
+          linewidth = 1)+
+  geom_sf(data = MG, fill = "white")  +
+  geom_point(data = sbr, aes(longitude, latitude), color = "red")+
+  theme_map()
+```
+
+## Para colocar a rosa dos ventos:
+
+```{r}
+library(ggspatial)
+
+ggplot(BRA) +
+  geom_sf(fill = "black",
+          color = "yellow",
+          linewidth = 1)+
+  geom_sf(data = MG, fill = "white")+
+  geom_point(data = sbr, aes(longitude, latitude), color = "red")+
+  theme_map()+
+    annotation_north_arrow(which_north = "grid")
+```
+
+## Para fazer um mapa interativo:
+
+```{r}
+library(plotly)
+
+# Cria o objeto ggplot que será usado na função ggplotly do pacote plotly:
+bra <- ggplot(BRA) +
+  geom_sf(fill = "black",
+          color = "yellow",
+          linewidth = 1)+
+  geom_sf(data = MG, fill = "white")+
+  geom_point(data = sbr, aes(longitude, latitude), color = "red")+
+  theme_map()+
+    annotation_north_arrow(which_north = "grid")
+
+ggplotly(bra)
+```
+
+## Mapa interativo estilo Google Maps:
+
+Função setview configura a visualização, o ponto inicial do mapa, onde ele inicia. Nesse caso, Viçosa, está no centro desse mapa e quanto maior o zoom, mais próximo está Viçosa.
+
+```{r}
+library(leaflet)
+
+# mapa base:
+leaflet() |>
+  addTiles() |> 
+  setView(lng = -42.8825, lat = -20.7546, zoom = 12)
+```
+
+```{r}
+# para mudar o tema do mapa usar o providers$
+leaflet() |>
+leaflet() |>
+  addTiles(providers$Esri.WorldStreetMap) |> 
+  setView(lng = -42.8825, lat = -20.7546, zoom = 5)
+```
+
+```{r}
+# para mostrar os pontos (dos experimentos Soybean Rust) no mapa:
+leaflet(sbr) |>
+  addTiles() |> 
+  setView(lng = -42.8825, lat = -20.7546, zoom = 5) |> 
+  addCircleMarkers(radius = 2)
+```
+
+## Para fazer mapa com ponto de pizza:
+
+Pacote: **scatterpie**
+
+```{r}
+library(gsheet)
+mapa <- gsheet2tbl("https://docs.google.com/spreadsheets/d/1pAIFKsdKxk_UQQXdYwIO-O5NOkYNhpclImJcLziYnk4/edit?usp=sharing")
+
+library(scatterpie)
+library(ggrepel) #colocar o nome em cima de cada ponto
+ggplot(BRA) +
+  geom_sf(fill = "gray70", alpha = 0.5, color = "white") +
+  coord_sf()+
+  geom_scatterpie(aes(x = lon, y = lat, r = 0.6), alpha = 0.8, color = NA, data = mapa,
+                  cols = c("DFC",
+                           "MA",
+                           "FER",
+                           "ANTR",
+                           "OIDIO"))+
+  geom_text_repel(data = mapa, aes(lon, lat, label = Local),
+                   size = 2, nudge_x = 0.2, nudge_y = 0.27, color = "gray30", family = "Arial") +
+  ggthemes::scale_fill_calc()+
+  ggthemes::theme_map() +
+  labs(x = "Longitude", y = "Latitude", legend = "", fill = "Doença")+
+  theme(legend.position = "bottom", text = element_text(family = "Arial", size = 8))
+```

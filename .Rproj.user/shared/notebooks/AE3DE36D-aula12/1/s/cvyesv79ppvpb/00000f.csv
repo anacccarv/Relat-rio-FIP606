@@ -1,0 +1,7 @@
+"0","# para mostrar os pontos (dos experimentos Soybean Rust) no mapa:"
+"0","leaflet(sbr) |>"
+"0","  addTiles() |> "
+"0","  setView(lng = -42.8825, lat = -20.7546, zoom = 5) |> "
+"0","  addCircleMarkers(radius = 2)"
+"2","Erro: objeto 'sbr' não encontrado
+"

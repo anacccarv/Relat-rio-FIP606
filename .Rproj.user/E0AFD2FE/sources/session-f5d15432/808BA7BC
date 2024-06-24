@@ -1,14 +1,14 @@
 {
-    "id": "E5034F28",
-    "path": "~/Relat-rio-FIP606/Aula6.qmd",
-    "project_path": "Aula6.qmd",
+    "id": "808BA7BC",
+    "path": "~/Relat-rio-FIP606/aula12.qmd",
+    "project_path": "aula12.qmd",
     "type": "quarto_markdown",
-    "hash": "2651107207",
+    "hash": "1340376272",
     "contents": "",
     "dirty": false,
-    "created": 1718997908471.0,
+    "created": 1719232745205.0,
     "source_on_save": false,
-    "relative_order": 2,
+    "relative_order": 1,
     "properties": {
         "rmdVisualMode": "false",
         "rmdVisualWrapConfigured": "true",
@@ -16,16 +16,16 @@
         "Source": "Source",
         "docOutlineVisible": "1",
         "rmdVisualCollapsedChunks": "",
-        "rmdVisualModeLocation": "5192:4473",
-        "cursorPosition": "416,0",
-        "scrollLine": "411"
+        "rmdVisualModeLocation": "2:1600",
+        "cursorPosition": "101,0",
+        "scrollLine": "94"
     },
     "folds": "",
-    "lastKnownWriteTime": 1719000454,
+    "lastKnownWriteTime": 1719232791,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1719000454072,
+    "last_content_update": 1719232791622,
     "read_only": false,
     "read_only_alternatives": []
 }

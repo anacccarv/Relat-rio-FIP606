@@ -1,0 +1,5 @@
+"0","# para mudar o tema do mapa usar o providers$"
+"0","leaflet() |>"
+"0","leaflet() |>"
+"0","  addTiles(providers$Esri.WorldStreetMap) |> "
+"0","  setView(lng = -42.8825, lat = -20.7546, zoom = 5)"
