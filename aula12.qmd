@@ -115,8 +115,9 @@ leaflet() |>
 ```{r}
 # para mudar o tema do mapa usar o providers$
 leaflet() |>
-  addProviderTiles(providers$Esri.WorldStreetMap) |> 
-  setView(lng = -42.8825, lat = -20.7546, zoom = 12)
+leaflet() |>
+  addTiles(providers$Esri.WorldStreetMap) |> 
+  setView(lng = -42.8825, lat = -20.7546, zoom = 5)
 ```
 
 ```{r}
