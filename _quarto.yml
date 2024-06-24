@@ -45,6 +45,9 @@ website:
             text: ANOVA
           - href: Aula9.qmd
             text: Análise de Modelo Misto, Correlação e Regressão Linear
+            
+      - href: aula12.qmd
+        text: Criação de mapas      
         
     tools:
       - icon: linkedin

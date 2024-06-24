@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>FIP606 - Introdução</title>
+<title>FIP606 - introducao</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -184,6 +184,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>  
     </ul>
   </li>
+  <li class="nav-item">
+    <a class="nav-link" href="./aula12.html"> 
+<span class="menu-text">Criação de mapas</span></a>
+  </li>  
 </ul>
           </div> <!-- /navcollapse -->
           <div class="quarto-navbar-tools tools-wide">
@@ -203,7 +207,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#começando-um-projeto-no-rstudio" id="toc-começando-um-projeto-no-rstudio" class="nav-link active" data-scroll-target="#começando-um-projeto-no-rstudio">Começando um projeto no RStudio</a>
+  <li><a href="#introdução" id="toc-introdução" class="nav-link active" data-scroll-target="#introdução">Introdução</a></li>
+  <li><a href="#começando-um-projeto-no-rstudio" id="toc-começando-um-projeto-no-rstudio" class="nav-link" data-scroll-target="#começando-um-projeto-no-rstudio">Começando um projeto no RStudio</a>
   <ul class="collapse">
   <li><a href="#passos-para-começar-um-projeto-organizado" id="toc-passos-para-começar-um-projeto-organizado" class="nav-link" data-scroll-target="#passos-para-começar-um-projeto-organizado">Passos para Começar um Projeto Organizado</a></li>
   </ul></li>
@@ -221,7 +226,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Introdução</h1>
+<h1 class="title">introducao</h1>
 </div>
 
 
@@ -238,10 +243,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
+<section id="introdução" class="level1">
+<h1>Introdução</h1>
 <p>R é uma linguagem de programação e ambiente de software livre amplamente utilizado para análise estatística, visualização de dados e ciência de dados. Criado por Ross Ihaka e Robert Gentleman na década de 1990, R teve sua primeira versão estável lançada em 2000 e, desde então, tem crescido em popularidade devido a suas poderosas capacidades e à forte comunidade de usuários e desenvolvedores.</p>
 <p>Embora seja perfeitamente possível usar apenas a instalação básica do R, muitas pessoas preferem utilizar um ambiente de desenvolvimento integrado (IDE) para uma experiência mais eficiente e amigável. Um dos IDEs mais populares para R é o RStudio.</p>
 <p>RStudio é um complemento do R que oferece uma interface mais intuitiva e funcionalidades avançadas para facilitar seu trabalho com R.</p>
 <p>Para fazer o download dos programas <a href="https://posit.co/download/rstudio-desktop/#download">clique aqui</a>.</p>
+</section>
 <section id="começando-um-projeto-no-rstudio" class="level1">
 <h1>Começando um projeto no RStudio</h1>
 <p>Manter seus projetos organizados é crucial para facilitar o entendimento dos códigos no momento das análises e principalmente no futuro.</p>
@@ -290,13 +298,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Exemplo:</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>A função <code>library()</code> também carregará quaisquer pacotes adicionais necessários e poderá imprimir informações adicionais do pacote.</p>
-<p><em>Dica</em>: colocar todos pacotes necessários para a análise no topo dos scripts em um chunk específico para torná-los mais acessíveis e fáceis de encontrar.</p>
-<p>As vezes, pode ser útil usar uma função sem primeiro usar a função <code>library()</code>. Por exemplo, se for utilizar apenas uma ou duas funções em seu script e não quiser carregar o pacote completo, poderá acessar a função diretamente, basta especificar o nome do pacote seguido de :: e o nome da função.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Exemplo:</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co">#tidyverse::select()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 

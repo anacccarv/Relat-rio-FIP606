@@ -1,8 +1,10 @@
 ---
-title: "Introdução"
+title: "introducao"
 message: false
 warning: false
 ---
+
+# Introdução
 
 R é uma linguagem de programação e ambiente de software livre amplamente utilizado para análise estatística, visualização de dados e ciência de dados. Criado por Ross Ihaka e Robert Gentleman na década de 1990, R teve sua primeira versão estável lançada em 2000 e, desde então, tem crescido em popularidade devido a suas poderosas capacidades e à forte comunidade de usuários e desenvolvedores.
 
@@ -67,15 +69,4 @@ Depois de instalar um pacote em seu computador, ele não está imediatamente dis
 ```{r}
 #Exemplo:
 library(tidyverse)
-```
-
-A função `library()` também carregará quaisquer pacotes adicionais necessários e poderá imprimir informações adicionais do pacote.
-
-*Dica*: colocar todos pacotes necessários para a análise no topo dos scripts em um chunk específico para torná-los mais acessíveis e fáceis de encontrar.
-
-As vezes, pode ser útil usar uma função sem primeiro usar a função `library()`. Por exemplo, se for utilizar apenas uma ou duas funções em seu script e não quiser carregar o pacote completo, poderá acessar a função diretamente, basta especificar o nome do pacote seguido de :: e o nome da função.
-
-```{r}
-#Exemplo:
-#tidyverse::select()
 ```
