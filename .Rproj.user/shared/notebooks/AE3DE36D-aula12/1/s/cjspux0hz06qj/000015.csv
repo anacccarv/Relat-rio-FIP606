@@ -1,0 +1,21 @@
+"0","library(plotly)"
+"0",""
+"0","# Cria o objeto ggplot que será usado na função ggplotly do pacote plotly:"
+"0","bra <- ggplot(BRA) +"
+"0","  geom_sf(fill = ""black"","
+"0","          color = ""yellow"","
+"0","          linewidth = 1)+"
+"0","  geom_sf(data = MG, fill = ""white"")+"
+"0","  geom_point(data = sbr, aes(longitude, latitude), color = ""red"")+"
+"0","  theme_map()+"
+"0","    annotation_north_arrow(which_north = ""grid"")"
+"0",""
+"0","ggplotly(bra)"
+"2","Aviso em geom2trace.default(dots[[1L]][[1L]], dots[[2L]][[1L]], dots[[3L]][[1L]]) :"
+"2","
+ "
+"2"," geom_GeomNorthArrow() has yet to be implemented in plotly.
+  If you'd like to see this geom implemented,
+  Please open an issue with your example code at
+  https://github.com/ropensci/plotly/issues
+"

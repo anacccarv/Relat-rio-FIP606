@@ -2,8 +2,6 @@
 title: "Criando mapas no R"
 format: html
 editor: visual
-message: false
-warning: false
 ---
 
 ```{r}
